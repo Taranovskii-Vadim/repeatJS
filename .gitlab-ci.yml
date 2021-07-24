@@ -8,7 +8,7 @@ build-job:
   stage: build
   script:
     - echo "Compiling the code..."
-    - npm run install
+    - npm install
     - npm run build
     - echo "Compile complete."
 
@@ -16,5 +16,5 @@ unit-test-job:
   stage: test
   script:
     - echo "Running unit tests..."
-    - npm run install 
+    - npm install
     - npm run test
