@@ -11,10 +11,9 @@ build-job:
     - npm install
     - npm run build
     - echo "Compile complete."
-
-unit-test-job:
-  stage: test
-  script:
-    - echo "Running unit tests..."
-    - npm install
-    - npm run test
+# unit-test-job:
+#   stage: test
+#   script:
+#     - echo "Running unit tests..."
+#     - npm install
+#     - npm run test
