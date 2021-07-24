@@ -160,3 +160,11 @@ export const isReplacementString = (str1: string, str2: string): boolean => {
 };
 
 //Task 9
+
+export const sortOdd = (arr: number[]): number[] => {
+  const odd: number[] = arr.filter((item) => item % 2).sort((a, b) => a - b);
+
+  let counter = 0;
+
+  return arr.map((item) => (item % 2 ? odd[counter++] : item));
+};
