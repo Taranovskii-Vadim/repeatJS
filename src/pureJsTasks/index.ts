@@ -79,33 +79,33 @@ export async function start() {
 
 // Task 5
 
-const tree = {
-  left: {
-    left: {},
-    right: {
-      value: 4,
-    },
-    value: 1,
-  },
-  right: {
-    left: {
-      left: {
-        left: {},
-        right: {
-          value: 5,
-        },
-        value: 2,
-      },
-      right: {},
-    },
-    right: {
-      value: 7,
-    },
-  },
-  value: 4,
-};
+// const tree = {
+//   left: {
+//     left: {},
+//     right: {
+//       value: 4,
+//     },
+//     value: 1,
+//   },
+//   right: {
+//     left: {
+//       left: {
+//         left: {},
+//         right: {
+//           value: 5,
+//         },
+//         value: 2,
+//       },
+//       right: {},
+//     },
+//     right: {
+//       value: 7,
+//     },
+//   },
+//   value: 4,
+// };
 
-const getSumValues = (obj: any): number => {
+export const getSumValues = (obj: any): number => {
   let result = obj.value || 0;
 
   if (obj.left) {
@@ -134,7 +134,7 @@ export const canDrink = (person: { age: number }) => {
 };
 
 // Task 7
-const multiArr = [1, 2, [1, 2, 3, [4, 5], [6]], [8, 5, 6, [1, [2, 3, [6]]]]];
+// const multiArr = [1, 2, [1, 2, 3, [4, 5], [6]], [8, 5, 6, [1, [2, 3, [6]]]]];
 
 export const myFlat = (arr: any[]): any[] => {
   let result: any[] = [];
