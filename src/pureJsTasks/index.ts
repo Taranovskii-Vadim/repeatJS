@@ -149,3 +149,14 @@ export const myFlat = (arr: any[]): any[] => {
 };
 
 // Task 8
+
+export const isReplacementString = (str1: string, str2: string): boolean => {
+  if (str1.length === str2.length) {
+    const symbols1 = str1.split("").sort();
+    const symbols2 = str2.split("").sort();
+    return symbols1.join("") === symbols2.join("");
+  }
+  return false;
+};
+
+//Task 9
