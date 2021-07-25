@@ -219,3 +219,147 @@ export const isPalindrom = (phrase: string): boolean => {
 
   return true;
 };
+
+// Task 12
+
+export const getRecursionSum = (...rest: number[]) => {
+  const getSum = (arr: number[]) => arr.reduce((acc, item) => acc + item);
+  let result = getSum(rest);
+  return function func(...args: number[]) {
+    if (args.length) {
+      result += getSum([...args]);
+      return func;
+    }
+    return result;
+  };
+};
+
+// Task 13
+
+export const IIFECounter = (function () {
+  let counter = 0;
+  return () => counter++;
+})();
+
+// Task 14
+
+export const myBind = <C, R>(
+  context: { [key: number]: any },
+  callback: C,
+  ...rest: R[]
+) => {
+  return (...args: R[]) => {
+    const uniqId = Date.now();
+    context[uniqId] = callback;
+    const result = context[uniqId](...rest.concat(args));
+    delete context[uniqId];
+    return result;
+  };
+};
+
+// Task 15
+
+const fruits = [
+  "BaNaNa",
+  "orange",
+  "pineapple",
+  "baNana",
+  "banAna",
+  undefined,
+  0,
+  true,
+  "pineapple",
+];
+
+export const getTopFruits = (fruits: any[]): string[] => {
+  const filteredArr: string[] = fruits
+    .filter((item) => typeof item === "string")
+    .map((item) => item.toLowerCase());
+
+  const grouped = filteredArr.reduce((acc, item) => {
+    acc[item] = (acc[item] || 0) + 1;
+    return acc;
+  }, {} as { [key: string]: number });
+
+  return Object.entries(grouped)
+    .sort((a, b) => b[1] - a[1])
+    .map((item) => item[0]);
+};
+
+// Task 16
+
+export const getVowelsCount = (str: string, mode: "rus" | "en"): number => {
+  const getVowels = (): string[] => {
+    const enVowels = ["A", "O", "E", "U", "I", "Y"];
+    const ruVowels = ["А"];
+    return mode === "en" ? enVowels : ruVowels;
+  };
+  const template = getVowels().map((item) => item.toLowerCase());
+  const regex = new RegExp(`[${template.join("")}]`, "gi");
+  const matched = str.match(regex);
+  return matched ? matched.length : 0;
+};
+
+// Task 17
+
+export const getFibNumber = (index: number): number => {
+  let a = 0,
+    b = 1;
+  for (let i = 0; i < index - 2; i++) {
+    [a, b] = [b, a + b];
+  }
+  return b;
+};
+
+// Task 18
+
+export const fizzBazz = (
+  num: number
+): "fizzbazz" | "fizz" | "bazz" | number => {
+  if (num % 3 === 0 && num % 5 === 0) {
+    return "fizzbazz";
+  }
+
+  if (num % 5 === 0) {
+    return "fizz";
+  }
+  if (num % 3 === 0) {
+    return "bazz";
+  }
+  return num;
+};
+
+// Task 19
+
+const currencies = [
+  ["usd", "sell", 3000],
+  ["usd", "sell", 3000],
+  ["usd", "buy", 10000],
+  ["rub", "buy", 2500],
+  ["eur", "buy", 7000],
+  ["eur", "buy", 8000],
+  ["eur", "sell", 6500],
+];
+
+export const getTodayTotal = (
+  currencies: Array<[string, "sell" | "buy", number]>
+): { [key: string]: number[] } => {
+  return currencies.reduce((acc, item) => {
+    const [cur, type, money] = item;
+    acc[cur] = acc[cur] || [0, 0];
+    acc[cur][type === "sell" ? 0 : 1] += money;
+    return acc;
+  }, {} as { [key: string]: number[] });
+};
+
+// Task 20
+
+export const getRandomHex = () => {
+  const hexSymb = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+  let result = "#";
+  for (let i = 0; i < 6; i++) {
+    const randomIndex = Math.floor(Math.random() * hexSymb.length);
+    result += hexSymb[randomIndex];
+  }
+  return result;
+};
