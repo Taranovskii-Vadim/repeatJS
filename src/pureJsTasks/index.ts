@@ -259,7 +259,7 @@ export const myBind = <C, R>(
 
 // Task 15
 
-const fruits = [
+const fruits: any[] = [
   "BaNaNa",
   "orange",
   "pineapple",
@@ -271,7 +271,7 @@ const fruits = [
   "pineapple",
 ];
 
-export const getTopFruits = (fruits: any[]): string[] => {
+export const getTopFruits = (): string[] => {
   const filteredArr: string[] = fruits
     .filter((item) => typeof item === "string")
     .map((item) => item.toLowerCase());
@@ -288,7 +288,10 @@ export const getTopFruits = (fruits: any[]): string[] => {
 
 // Task 16
 
-export const getVowelsCount = (str: string, mode: "rus" | "en"): number => {
+export const getVowelsCount = (
+  str: string,
+  mode: Types.LanguageMode
+): number => {
   const getVowels = (): string[] => {
     const enVowels = ["A", "O", "E", "U", "I", "Y"];
     const ruVowels = ["А"];
@@ -313,9 +316,7 @@ export const getFibNumber = (index: number): number => {
 
 // Task 18
 
-export const fizzBazz = (
-  num: number
-): "fizzbazz" | "fizz" | "bazz" | number => {
+export const fizzBazz = (num: number): Types.FizzBazz => {
   if (num % 3 === 0 && num % 5 === 0) {
     return "fizzbazz";
   }
@@ -331,7 +332,7 @@ export const fizzBazz = (
 
 // Task 19
 
-const currencies = [
+const currencies: Types.CurrencyTuple = [
   ["usd", "sell", 3000],
   ["usd", "sell", 3000],
   ["usd", "buy", 10000],
@@ -341,16 +342,16 @@ const currencies = [
   ["eur", "sell", 6500],
 ];
 
-export const getTodayTotal = (
-  currencies: Array<[string, "sell" | "buy", number]>
-): { [key: string]: number[] } => {
-  return currencies.reduce((acc, item) => {
-    const [cur, type, money] = item;
-    acc[cur] = acc[cur] || [0, 0];
-    acc[cur][type === "sell" ? 0 : 1] += money;
-    return acc;
-  }, {} as { [key: string]: number[] });
-};
+export const getTodayTotal =
+  (): // currencies: Array<[string, "sell" | "buy", number]>
+  { [key: string]: number[] } => {
+    return currencies.reduce((acc, item) => {
+      const [cur, type, money] = item;
+      acc[cur] = acc[cur] || [0, 0];
+      acc[cur][type === "sell" ? 0 : 1] += money;
+      return acc;
+    }, {} as { [key: string]: number[] });
+  };
 
 // Task 20
 
@@ -363,3 +364,67 @@ export const getRandomHex = () => {
   }
   return result;
 };
+
+// Task 21
+
+const maze = [
+  [1, 1, 1, 0],
+  [0, 0, 0, 0],
+  [0, 1, 1, 1],
+  [0, 1, 1, 1],
+];
+
+export const checkPath = (start: Types.Coordinates, end: Types.Coordinates) => {
+  maze[start.y][start.x] = 42;
+  const getSiblings = ({ x, y }: Types.Coordinates) => {
+    const result: Array<Types.CoordinatesWithVal> = [];
+
+    if (maze[y - 1] !== undefined) {
+      result.push({ x, y: y - 1, val: maze[y - 1][x] });
+    }
+
+    if (maze[y + 1] !== undefined) {
+      result.push({ x, y: y + 1, val: maze[y + 1][x] });
+    }
+
+    if (maze[y][x - 1] !== undefined) {
+      result.push({ x: x - 1, y, val: maze[y][x - 1] });
+    }
+
+    if (maze[y][x + 1] !== undefined) {
+      result.push({ x: x + 1, y, val: maze[y][x + 1] });
+    }
+
+    return result.filter((item) => !item.val);
+  };
+
+  const siblings = getSiblings(start);
+  if (siblings.length) {
+    for (let { x, y } of siblings) {
+      const isFinished = x === end.x && y === end.y;
+      if (isFinished || checkPath({ x, y }, end)) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
+// Task 22
+
+export const getSimpleNumbers = (limit: number) => {
+  const result: number[] = [];
+  const defective: { [key: number]: boolean } = {};
+  for (let i = 2; i <= limit; i++) {
+    if (!defective[i]) {
+      result.push(i);
+      for (let j = i * i; j < limit; j += i) {
+        defective[j] = true;
+      }
+    }
+  }
+
+  return result;
+};
+
+// Task 23
