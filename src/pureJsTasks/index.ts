@@ -414,7 +414,7 @@ export const checkPath = (start: Types.Coordinates, end: Types.Coordinates) => {
 
 export const getSimpleNumbers = (limit: number) => {
   const result: number[] = [];
-  const defective: { [key: number]: boolean } = {};
+  const defective: { [key: number]: true } = {};
   for (let i = 2; i <= limit; i++) {
     if (!defective[i]) {
       result.push(i);
