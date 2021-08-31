@@ -1,7 +1,14 @@
 import React from "react";
+import { useDebounce } from "./hooks";
 
-import * as pureJs from "./pureJsTasks";
+// import * as pureJs from "./pureJsTasks";
 
 export const App = (): JSX.Element => {
-  return <div>This app for learn new js stuff</div>;
+  const onChange = (val: string) => {
+    fetch(val);
+  };
+
+  const debouncedChange = useDebounce(onChange, 1000);
+
+  return <input onChange={(e) => debouncedChange(e.target.value)} />;
 };
