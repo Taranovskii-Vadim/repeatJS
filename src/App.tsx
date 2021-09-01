@@ -1,14 +1,10 @@
 import React from "react";
-import { useDebounce } from "./hooks";
-
-// import * as pureJs from "./pureJsTasks";
+import { useRequest } from "./hooks";
 
 export const App = (): JSX.Element => {
-  const onChange = (val: string) => {
-    fetch(val);
-  };
-
-  const debouncedChange = useDebounce(onChange, 1000);
-
-  return <input onChange={(e) => debouncedChange(e.target.value)} />;
+  const { isLoading, isError, data } = useRequest(
+    fetch("https://jsonplaceholder.typicode.com/todos")
+  );
+  console.log(isLoading, isError, data);
+  return <div></div>;
 };
