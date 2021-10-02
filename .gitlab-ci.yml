@@ -1,19 +1,19 @@
-image: node
+# image: node
 
-stages:
-  - build
-  - test
+# stages:
+#   - build
+#   - test
 
-build-job:
-  stage: build
-  script:
-    - echo "Compiling the code..."
-    - npm install
-    - npm run build
-    - echo "Compile complete."
-# unit-test-job:
-#   stage: test
+# build-job:
+#   stage: build
 #   script:
-#     - echo "Running unit tests..."
+#     - echo "Compiling the code..."
 #     - npm install
-#     - npm run test
+#     - npm run build
+#     - echo "Compile complete."
+# # unit-test-job:
+# #   stage: test
+# #   script:
+# #     - echo "Running unit tests..."
+# #     - npm install
+# #     - npm run test
