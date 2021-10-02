@@ -428,3 +428,20 @@ export const getSimpleNumbers = (limit: number) => {
 };
 
 // Task 23
+
+export const findSumOfTwo = (
+  arr: number[],
+  target: number
+): number[] | null => {
+  // Bad way for perf
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === target) {
+        return [arr[i], arr[j]];
+      }
+    }
+  }
+  return null;
+};
+
+// Task 24
