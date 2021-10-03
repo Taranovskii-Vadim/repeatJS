@@ -445,3 +445,45 @@ export const findSumOfTwo = (
 };
 
 // Task 24
+
+export const sumOfThree = (arr: number[], target: number = 0): number[][] => {
+  const result: number[][] = [];
+
+  if (arr.length < 3) {
+    return result;
+  }
+
+  arr = arr.sort((a, b) => a - b);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > target) {
+      break;
+    }
+    let j = i + 1;
+    let k = arr.length - 1;
+
+    while (j < k) {
+      const sum = arr[i] + arr[j] + arr[k];
+
+      if (sum === target) {
+        result.push([arr[i], arr[j], arr[k]]);
+        j++;
+        k--;
+        continue;
+      }
+
+      if (sum > target) {
+        k--;
+        continue;
+      }
+
+      if (sum < target) {
+        j++;
+        continue;
+      }
+    }
+  }
+  return result;
+};
+
+// Task 25
