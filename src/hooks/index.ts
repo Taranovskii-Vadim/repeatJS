@@ -6,3 +6,4 @@ export { default as useRequest } from "./useRequest";
 export { default as useToggle } from "./useToggle";
 export { default as useUpdateEffect } from "./useUpdateEffect";
 export { default as useArray } from "./useArray";
+export { default as useEventListener } from "./useEventListener";
