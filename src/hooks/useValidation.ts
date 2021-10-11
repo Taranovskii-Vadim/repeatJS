@@ -1,25 +1,35 @@
 import { useCallback, useState } from "react";
 
-type DefaultValue = () => string;
+interface Output<V> {
+  value: V;
+  isValid: boolean;
+  setValue: (value: V) => void;
+}
 
-const useValidation = (
-  defaultValue: string | DefaultValue,
-  validate: (val: string) => boolean
-) => {
-  const [value, setValue] = useState(defaultValue);
+type InitialDataFunction<R> = () => R;
+
+type InitialData<R> = R | InitialDataFunction<R>;
+
+type Validate<R> = (val: R) => boolean;
+
+const useValidation = <T extends any>(
+  initial: InitialData<T>,
+  validate: Validate<T>
+): Output<T> => {
+  const [state, setState] = useState<T>(initial);
   const [isValid, setIsValid] = useState(() => false);
 
-  const onChange = useCallback(
-    (nextState) => {
-      const newValue =
-        typeof nextState === "function" ? nextState(value) : nextState;
-      setValue(newValue);
-      setIsValid(validate(newValue));
+  const setValue = useCallback(
+    (defineState) => {
+      const newState =
+        typeof defineState === "function" ? defineState(state) : defineState;
+      setState(newState);
+      setIsValid(validate(newState));
     },
     [validate]
   );
 
-  return { value, onChange, isValid };
+  return { value: state, setValue, isValid };
 };
 
 export default useValidation;
