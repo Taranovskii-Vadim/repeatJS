@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 
-import { useValidation } from "./hooks";
+import { useSize } from "./hooks";
 
 export const App = (): JSX.Element => {
-  const { value, setValue, isValid } = useValidation(
-    () => "",
-    (val) => val.length > 5
-  );
+  const ref = useRef<HTMLTextAreaElement>(null);
+
+  const sizes = useSize(ref);
+
   return (
     <div>
-      <div>isValid {isValid.toString()}</div>
-      <input value={value} onChange={(e) => setValue(e.target.value)} />
+      {JSON.stringify(sizes)}
+      <textarea ref={ref}></textarea>
     </div>
   );
 };
