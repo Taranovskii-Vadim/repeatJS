@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 
-import MemoCounter from "./components/MemoCounter";
-import { sumOfThree } from "./pureJsTasks";
+import { useValidation } from "./hooks";
 
 export const App = (): JSX.Element => {
-  console.log(sumOfThree([1, 2, 3, 4, 5, 0], 5));
-  return <MemoCounter />;
+  const { value, onChange, isValid } = useValidation(
+    () => "",
+    (val) => val.length > 5
+  );
+  return (
+    <div>
+      <div>isValid {isValid.toString()}</div>
+      <input value={value} onChange={(e) => onChange(e.target.value)} />
+    </div>
+  );
 };

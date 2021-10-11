@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 export default function useEventListener(
   type: keyof WindowEventMap,
-  callback: (event: Event) => void,
+  callback: (event: any) => void,
   element: any = window
 ): void {
   const callbackRef = useRef(callback);
