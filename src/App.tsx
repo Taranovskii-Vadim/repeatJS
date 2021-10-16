@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useUpdateEffect, useValidation } from "./hooks";
+import React, { useEffect, useRef, useState } from "react";
+import { useClickOutside, useUpdateEffect, useValidation } from "./hooks";
 
 export const App = (): JSX.Element => {
-  const [counter, setCounter] = useState(() => 0);
+  const [open, setOpen] = useState(() => false);
 
-  useUpdateEffect(() => {
-    alert("count is hello");
-  }, [counter]);
+  const modalRef = useRef(null);
+
+  useClickOutside(modalRef, () => {
+    if (open) {
+      setOpen(false);
+    }
+  });
+
   return (
     <div>
-      counter {counter}
-      <button onClick={() => setCounter((prev) => prev + 1)}>plus</button>
+      <button onClick={() => setOpen(true)}>open</button>
+      {open ? <div ref={modalRef}>modal window</div> : null}
     </div>
   );
 };

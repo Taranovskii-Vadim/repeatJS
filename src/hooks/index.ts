@@ -10,3 +10,4 @@ export { default as useEventListener } from "./useEventListener";
 export { default as useMediaQuery } from "./useMediaQuery";
 export { default as useValidation } from "./useValidation";
 export { default as useSize } from "./useSize";
+export { default as useClickOutside } from "./useClickOutside";
