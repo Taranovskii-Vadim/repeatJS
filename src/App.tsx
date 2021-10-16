@@ -1,21 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useClickOutside, useUpdateEffect, useValidation } from "./hooks";
+import React from "react";
+import { useCopyToClipboard } from "./hooks";
 
 export const App = (): JSX.Element => {
-  const [open, setOpen] = useState(() => false);
-
-  const modalRef = useRef(null);
-
-  useClickOutside(modalRef, () => {
-    if (open) {
-      setOpen(false);
-    }
-  });
+  const { copyToClipboard, success } = useCopyToClipboard();
 
   return (
     <div>
-      <button onClick={() => setOpen(true)}>open</button>
-      {open ? <div ref={modalRef}>modal window</div> : null}
+      <button onClick={() => copyToClipboard("that was copied")}>
+        {success ? "Copied" : "Copy"}
+      </button>
+      <input type="text" />
     </div>
   );
 };

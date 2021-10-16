@@ -11,3 +11,5 @@ export { default as useMediaQuery } from "./useMediaQuery";
 export { default as useValidation } from "./useValidation";
 export { default as useSize } from "./useSize";
 export { default as useClickOutside } from "./useClickOutside";
+export { default as useCookie } from "./useCookie";
+export { default as useCopyToClipboard } from "./useCopyToClipboard";
