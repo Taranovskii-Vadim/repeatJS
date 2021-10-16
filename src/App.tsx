@@ -1,16 +1,16 @@
-import React, { useRef } from "react";
-
-import { useSize } from "./hooks";
+import React, { useEffect, useState } from "react";
+import { useUpdateEffect, useValidation } from "./hooks";
 
 export const App = (): JSX.Element => {
-  const ref = useRef<HTMLTextAreaElement>(null);
+  const [counter, setCounter] = useState(() => 0);
 
-  const sizes = useSize(ref);
-
+  useUpdateEffect(() => {
+    alert("count is hello");
+  }, [counter]);
   return (
     <div>
-      {JSON.stringify(sizes)}
-      <textarea ref={ref}></textarea>
+      counter {counter}
+      <button onClick={() => setCounter((prev) => prev + 1)}>plus</button>
     </div>
   );
 };
