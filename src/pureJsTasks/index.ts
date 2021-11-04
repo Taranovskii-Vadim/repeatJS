@@ -487,3 +487,59 @@ export const sumOfThree = (arr: number[], target: number = 0): number[][] => {
 };
 
 // Task 25
+
+// const numbers = [3, 4, 5, 0, 1, 2, 6, 7];
+
+// const binarySearch = (arr, target) => {
+//   let left = 0;
+//   let right = arr.length - 1;
+//   while (left <= right) {
+//     let middle = Math.floor((left + right) / 2);
+//     if (arr[middle] === target) {
+//       return middle;
+//     }
+//     if (arr[left] <= arr[middle]) {
+//       if (arr[left] <= target && target <= arr[middle]) {
+//         right = middle - 1;
+//       } else {
+//         left = middle + 1;
+//       }
+//     } else {
+//       if (arr[middle] <= target && target <= arr[right]) {
+//         left = middle + 1;
+//       } else {
+//         right = middle - 1;
+//       }
+//     }
+//   }
+//   return -1;
+// };
+
+// console.log(binarySearch(numbers, 4));
+
+// Task 26
+
+// const obj = {
+//   1000: 5,
+//   500: 2,
+//   100: 3,
+//   50: 10,
+//   30: 6,
+// };
+
+// const getMoney = (money) => {
+//   const cur = [1000, 100, 50, 10];
+//   const result = {};
+//   for (let item of cur) {
+//     if (money === 0) {
+//       break;
+//     }
+//     while (money - item >= 0) {
+//       money -= item;
+//       result[item] = (result[item] || 0) + 1;
+//     }
+//   }
+//   return result;
+// };
+
+// console.log(getMoney(450));
