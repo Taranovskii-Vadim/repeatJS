@@ -1,15 +1,10 @@
 import React from "react";
-import { useCopyToClipboard } from "./hooks";
+import GradientButton from "./components/ui/Button";
 
 export const App = (): JSX.Element => {
-  const { copyToClipboard, success } = useCopyToClipboard();
-
   return (
     <div>
-      <button onClick={() => copyToClipboard("that was copied")}>
-        {success ? "Copied" : "Copy"}
-      </button>
-      <input type="text" />
+      <GradientButton label="Hover me" onClick={() => console.log("hello")} />
     </div>
   );
 };
