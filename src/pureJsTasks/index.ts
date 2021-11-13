@@ -543,3 +543,18 @@ export const sumOfThree = (arr: number[], target: number = 0): number[][] => {
 // };
 
 // console.log(getMoney(450));
+
+// Task 27
+
+// export const getProfit = (arr: number[]): number => {
+//   return arr.reduce((acc, item, index) => {
+//     const prev = arr[index - 1];
+
+//     if (!Number.isNaN(Number(prev)) && prev < item) {
+//       acc += item - prev;
+//     }
+//     return acc;
+//   }, 0);
+// };
+
+// Task 28
