@@ -558,3 +558,23 @@ export const sumOfThree = (arr: number[], target: number = 0): number[][] => {
 // };
 
 // Task 28
+
+export const fillMatrixZero = (matrix: number[][]): number[][] | null => {
+  for (let i = 0; i < matrix.length; i++) {
+    const zeroIndex = matrix[i].findIndex((item) => item === 0);
+
+    if (zeroIndex >= 0) {
+      matrix[i] = matrix[i].fill(0);
+
+      for (let item of matrix) {
+        item[zeroIndex] = 0;
+      }
+
+      return matrix;
+    }
+  }
+
+  return null;
+};
+
+// Task 29
