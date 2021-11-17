@@ -546,16 +546,16 @@ export const sumOfThree = (arr: number[], target: number = 0): number[][] => {
 
 // Task 27
 
-// export const getProfit = (arr: number[]): number => {
-//   return arr.reduce((acc, item, index) => {
-//     const prev = arr[index - 1];
+export const getProfit = (arr: number[]): number => {
+  return arr.reduce((acc, item, index) => {
+    const prev = arr[index - 1];
 
-//     if (!Number.isNaN(Number(prev)) && prev < item) {
-//       acc += item - prev;
-//     }
-//     return acc;
-//   }, 0);
-// };
+    if (!Number.isNaN(Number(prev)) && prev < item) {
+      acc += item - prev;
+    }
+    return acc;
+  }, 0);
+};
 
 // Task 28
 
@@ -578,3 +578,12 @@ export const fillMatrixZero = (matrix: number[][]): number[][] | null => {
 };
 
 // Task 29
+
+export const findNotDouble = (arr: number[]): number => {
+  const uniq = [...new Set(arr)].reduce((acc, item) => acc + item, 0);
+  const ordinary = arr.reduce((acc, item) => acc + item, 0);
+
+  return uniq * 2 - ordinary;
+};
+
+// Task 30
