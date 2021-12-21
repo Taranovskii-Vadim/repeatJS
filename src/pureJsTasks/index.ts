@@ -2,15 +2,14 @@ import * as Types from "./types";
 
 // Task 1
 
-export const myGroupBy = (data: Array<any>, target: Types.TargetType) => {
-  const result: Types.GroupByResult = data.reduce((acc, item) => {
-    const key = target === "length" ? item.length : target(item);
+export const myGroupBy = (arr: any[], template: Types.TargetType) => {
+  return arr.reduce((acc, item) => {
+    const key = template === "length" ? item.length : template(item);
 
     acc[key] = acc[key] ? [...acc[key], item] : [item];
+
     return acc;
   }, {});
-
-  return result;
 };
 
 // Task 2
@@ -488,34 +487,34 @@ export const sumOfThree = (arr: number[], target: number = 0): number[][] => {
 
 // Task 25
 
-// const numbers = [3, 4, 5, 0, 1, 2, 6, 7];
+export const binarySearch = (arr: number[], target: number): number => {
+  let left = 0;
+  let right = arr.length - 1;
 
-// const binarySearch = (arr, target) => {
-//   let left = 0;
-//   let right = arr.length - 1;
-//   while (left <= right) {
-//     let middle = Math.floor((left + right) / 2);
-//     if (arr[middle] === target) {
-//       return middle;
-//     }
-//     if (arr[left] <= arr[middle]) {
-//       if (arr[left] <= target && target <= arr[middle]) {
-//         right = middle - 1;
-//       } else {
-//         left = middle + 1;
-//       }
-//     } else {
-//       if (arr[middle] <= target && target <= arr[right]) {
-//         left = middle + 1;
-//       } else {
-//         right = middle - 1;
-//       }
-//     }
-//   }
-//   return -1;
-// };
+  while (left <= right) {
+    const middle = Math.floor((left + right) / 2);
 
-// console.log(binarySearch(numbers, 4));
+    if (arr[middle] === target) {
+      return middle;
+    }
+
+    if (arr[left] <= arr[middle]) {
+      if (arr[left] <= target && target <= arr[middle]) {
+        right = middle - 1;
+      } else {
+        left = middle + 1;
+      }
+    } else {
+      if (arr[middle] <= target && target <= right) {
+        left = middle + 1;
+      } else {
+        right = middle - 1;
+      }
+    }
+  }
+
+  return -1;
+};
 
 // Task 26
 
