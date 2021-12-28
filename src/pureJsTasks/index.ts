@@ -14,9 +14,12 @@ export const myGroupBy = (arr: any[], template: Types.TargetType) => {
 
 // Task 2
 
-export const myChunk = (arr: Array<any>, length: number): Array<any[]> => {
-  const result: Array<any[]> = [];
-  let temp: any[] = [];
+export const myChunk = <T extends any>(
+  arr: Array<T>,
+  length: number
+): Array<T[]> => {
+  const result: Array<T[]> = [];
+  let temp: T[] = [];
 
   for (let item of arr) {
     if (temp.length === length) {
@@ -33,15 +36,17 @@ export const myChunk = (arr: Array<any>, length: number): Array<any[]> => {
 
 // Task 3
 
-const sum = (a: number, b: number): number => a + b;
+type SumFunction = (a: number, b: number) => number;
 
-const myPartial = <S>(callback: (...rest: S[]) => any, constant: S) => {
-  return (val: S) => {
+const sum: SumFunction = (a, b) => a + b;
+
+const myPartial = (callback: SumFunction, constant: number) => {
+  return (val: number) => {
     return callback.call(null, constant, val);
   };
 };
 
-export const sumTwo = myPartial<number>(sum, 2);
+export const sumTwo = myPartial(sum, 2);
 
 // Task 4
 
@@ -493,23 +498,16 @@ export const binarySearch = (arr: number[], target: number): number => {
 
   while (left <= right) {
     const middle = Math.floor((left + right) / 2);
+    const candidat = arr[middle];
 
-    if (arr[middle] === target) {
+    if (candidat === target) {
       return middle;
     }
 
-    if (arr[left] <= arr[middle]) {
-      if (arr[left] <= target && target <= arr[middle]) {
-        right = middle - 1;
-      } else {
-        left = middle + 1;
-      }
+    if (candidat > target) {
+      right = middle - 1;
     } else {
-      if (arr[middle] <= target && target <= right) {
-        left = middle + 1;
-      } else {
-        right = middle - 1;
-      }
+      left = middle + 1;
     }
   }
 
