@@ -584,3 +584,21 @@ export const findNotDouble = (arr: number[]): number => {
 };
 
 // Task 30
+
+export const maxDistToClosest = (arr: number[]): number => {
+  const distants: number[] = [];
+  let currentDist = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 1) {
+      distants.push(currentDist);
+      currentDist = 0;
+    } else {
+      currentDist++;
+    }
+  }
+
+  return Math.max(...distants);
+};
+
+// Task 31
