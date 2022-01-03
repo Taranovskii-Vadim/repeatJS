@@ -561,7 +561,7 @@ export const fillMatrixZero = (matrix: number[][]): number[][] | null => {
     const zeroIndex = matrix[i].findIndex((item) => item === 0);
 
     if (zeroIndex >= 0) {
-      matrix[i] = matrix[i].fill(0);
+      matrix[i].fill(0);
 
       for (let item of matrix) {
         item[zeroIndex] = 0;
@@ -571,6 +571,7 @@ export const fillMatrixZero = (matrix: number[][]): number[][] | null => {
     }
   }
 
+  // if any of sub arrays got no zero
   return null;
 };
 
@@ -602,3 +603,83 @@ export const maxDistToClosest = (arr: number[]): number => {
 };
 
 // Task 31
+
+export const solveSudoku = (sudoku: string[][]) => {
+  const size = sudoku.length;
+  const boxSize = Math.sqrt(size);
+
+  const findEmptyPosition = (): number[] => {
+    for (let r = 0; r < sudoku.length; r++) {
+      const row = sudoku[r];
+      for (let c = 0; c < row.length; c++) {
+        if (row[c] === ".") {
+          return [r, c];
+        }
+      }
+    }
+
+    return [];
+  };
+
+  const isSudokuValid = ([r, c]: number[], candidat: string): boolean => {
+    // check row
+    for (let i = 0; i < sudoku.length; i++) {
+      if (sudoku[r][i] === candidat && i !== c) {
+        return false;
+      }
+    }
+
+    // check col
+    for (let i = 0; i < sudoku.length; i++) {
+      if (sudoku[i][c] === candidat && i !== r) {
+        return false;
+      }
+    }
+
+    // check box
+
+    const boxRow = Math.floor(r / boxSize) * boxSize;
+    const boxCol = Math.floor(c / boxSize) * boxSize;
+
+    for (let i = boxRow; i < boxRow + boxSize; i++) {
+      for (let j = boxCol; j < boxCol + boxSize; j++) {
+        if (sudoku[i][j] === candidat && i !== r && j !== c) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  };
+
+  const solve = () => {
+    const currentPostion = findEmptyPosition();
+
+    if (!currentPostion.length) {
+      return true;
+    }
+
+    for (let i = 1; i <= size; i++) {
+      const insertCandidat = i.toString();
+      const isValid = isSudokuValid(currentPostion, insertCandidat);
+
+      if (isValid) {
+        const [r, c] = currentPostion;
+        sudoku[r][c] = insertCandidat;
+
+        if (solve()) {
+          return true;
+        }
+
+        sudoku[r][c] = ".";
+      }
+    }
+
+    return false;
+  };
+
+  solve();
+  return sudoku;
+};
+
+// Task 32
