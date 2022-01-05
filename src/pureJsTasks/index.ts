@@ -683,3 +683,42 @@ export const solveSudoku = (sudoku: string[][]) => {
 };
 
 // Task 32
+
+export const isNumberPalindrom = (value: number): boolean => {
+  if (value < 0) return false;
+  if (value % 10 === 0) return false;
+  if (value < 10) return true;
+
+  let reverse = 0;
+
+  while (value > reverse) {
+    reverse *= 10;
+    reverse += value % 10;
+    value = Math.trunc(value / 10);
+  }
+
+  return value === reverse || value === Math.trunc(reverse / 10);
+};
+
+// Task 33
+
+// TODO fix with video
+export const longestPalindrom = (value: string): string[] => {
+  const variants = [];
+  let candidat = "";
+  let maxLength = 0;
+
+  for (let i = 0; i < value.length; i++) {
+    for (let j = i; j < value.length; j++) {
+      candidat += value[j];
+      if (isPalindrom(candidat)) {
+        variants.push(candidat);
+        maxLength = Math.max(maxLength, candidat.length);
+      }
+    }
+
+    candidat = "";
+  }
+
+  return variants.filter((item) => item.length === maxLength);
+};
