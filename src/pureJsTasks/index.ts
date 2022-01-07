@@ -702,23 +702,43 @@ export const isNumberPalindrom = (value: number): boolean => {
 
 // Task 33
 
-// TODO fix with video
 export const longestPalindrom = (value: string): string[] => {
-  const variants = [];
-  let candidat = "";
-  let maxLength = 0;
+  const palindroms: string[] = [];
+  let maxValue = 0;
+  let temp = "";
 
   for (let i = 0; i < value.length; i++) {
     for (let j = i; j < value.length; j++) {
-      candidat += value[j];
-      if (isPalindrom(candidat)) {
-        variants.push(candidat);
-        maxLength = Math.max(maxLength, candidat.length);
+      temp += value[j];
+
+      if (isPalindrom(temp)) {
+        palindroms.push(temp);
+        maxValue = Math.max(maxValue, temp.length);
       }
     }
-
-    candidat = "";
+    temp = "";
   }
 
-  return variants.filter((item) => item.length === maxLength);
+  return palindroms.filter((item) => item.length === maxValue);
 };
+
+// Task 34
+
+export const findHappyNumber = (value: string): (number | undefined)[] => {
+  const numbers = value.split("").reduce((acc, item) => {
+    acc[item] = (acc[item] || 0) + 1;
+    return acc;
+  }, {} as { [key: string]: number });
+
+  const result = Object.keys(numbers)
+    .map((item) => {
+      if (item === numbers[item].toString()) {
+        return +item;
+      }
+    })
+    .filter(Boolean);
+
+  return result;
+};
+
+// Task 35

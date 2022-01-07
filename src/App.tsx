@@ -1,9 +1,6 @@
 import React from "react";
-import { longestPalindrom } from "./pureJsTasks";
 
 export const App = (): JSX.Element => {
-  console.log(longestPalindrom("ababa"));
-
   // console.log(
   //   solveSudoku([
   //     ["5", "3", ".", ".", "7", ".", ".", ".", "."],
