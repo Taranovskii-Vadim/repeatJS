@@ -691,13 +691,13 @@ export const isNumberPalindrom = (value: number): boolean => {
 
   let reverse = 0;
 
-  while (value > reverse) {
+  while (reverse < value) {
     reverse *= 10;
     reverse += value % 10;
     value = Math.trunc(value / 10);
   }
 
-  return value === reverse || value === Math.trunc(reverse / 10);
+  return reverse === value || value === Math.trunc(reverse / 10);
 };
 
 // Task 33
@@ -724,21 +724,18 @@ export const longestPalindrom = (value: string): string[] => {
 
 // Task 34
 
-export const findHappyNumber = (value: string): (number | undefined)[] => {
-  const numbers = value.split("").reduce((acc, item) => {
+export const findHappyNumber = (value: string): any => {
+  const entries = value.split("").reduce((acc, item) => {
     acc[item] = (acc[item] || 0) + 1;
     return acc;
   }, {} as { [key: string]: number });
 
-  const result = Object.keys(numbers)
-    .map((item) => {
-      if (item === numbers[item].toString()) {
-        return +item;
-      }
-    })
-    .filter(Boolean);
-
-  return result;
+  return Object.keys(entries).filter((key) => +key === entries[key]);
 };
 
 // Task 35
+
+// TODO got no idea how to solve it yet
+export const parseUrlString = (value: string) => {};
+
+// Task 36

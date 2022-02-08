@@ -1,6 +1,12 @@
 import React from "react";
+import { findHappyNumber } from "./pureJsTasks";
 
 export const App = (): JSX.Element => {
+  // console.log(
+  //   parseUrlString(
+  //     "user.name.firstname=Bob&user.name.lastname=Smith&user.color=red&theme=dark"
+  //   )
+  // );
   // console.log(
   //   solveSudoku([
   //     ["5", "3", ".", ".", "7", ".", ".", ".", "."],
