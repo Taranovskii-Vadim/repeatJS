@@ -4,10 +4,8 @@ import * as Types from "./types";
 
 export const myGroupBy = (arr: any[], template: Types.TargetType) => {
   return arr.reduce((acc, item) => {
-    const key = template === "length" ? item.length : template(item);
-
+    const key = typeof template === "string" ? item.length : template(item);
     acc[key] = acc[key] ? [...acc[key], item] : [item];
-
     return acc;
   }, {});
 };
@@ -49,7 +47,6 @@ const myPartial = (callback: SumFunction, constant: number) => {
 export const sumTwo = myPartial(sum, 2);
 
 // Task 4
-
 const logInfo = <S>(arr: S[]): string =>
   arr.reduce((acc, item) => {
     acc += item + " ";
@@ -80,34 +77,7 @@ export async function start() {
     console.error(e);
   }
 }
-
 // Task 5
-
-// const tree = {
-//   left: {
-//     left: {},
-//     right: {
-//       value: 4,
-//     },
-//     value: 1,
-//   },
-//   right: {
-//     left: {
-//       left: {
-//         left: {},
-//         right: {
-//           value: 5,
-//         },
-//         value: 2,
-//       },
-//       right: {},
-//     },
-//     right: {
-//       value: 7,
-//     },
-//   },
-//   value: 4,
-// };
 
 export const getSumValues = (obj: any): number => {
   let result = obj.value || 0;
@@ -138,9 +108,8 @@ export const canDrink = (person: { age: number }) => {
 };
 
 // Task 7
-// const multiArr = [1, 2, [1, 2, 3, [4, 5], [6]], [8, 5, 6, [1, [2, 3, [6]]]]];
 
-export const myFlat = (arr: any[]): any[] => {
+export const myFlat = (arr: any[]): number[] => {
   let result: any[] = [];
   for (let item of arr) {
     if (Array.isArray(item)) {
@@ -155,19 +124,18 @@ export const myFlat = (arr: any[]): any[] => {
 // Task 8
 
 export const isReplacementString = (str1: string, str2: string): boolean => {
-  if (str1.length === str2.length) {
-    const symbols1 = str1.split("").sort();
-    const symbols2 = str2.split("").sort();
-    return symbols1.join("") === symbols2.join("");
-  }
-  return false;
+  if (str1.length !== str2.length) return false;
+
+  const splited1 = str1.split("").sort();
+  const splited2 = str2.split("").sort();
+
+  return splited1.join("") === splited2.join("");
 };
 
 //Task 9
 
 export const sortOdd = (arr: number[]): number[] => {
-  const odd: number[] = arr.filter((item) => item % 2).sort((a, b) => a - b);
-
+  const odd = arr.filter((item) => item % 2).sort();
   let counter = 0;
 
   return arr.map((item) => (item % 2 ? odd[counter++] : item));
@@ -212,11 +180,11 @@ export const getAllReplacement = (num: number): Array<number> | null => {
 // Task 11
 
 export const isPalindrom = (phrase: string): boolean => {
-  phrase = phrase.replace(/\s/g, "").toLowerCase();
-  const halfLength = Math.floor(phrase.length / 2);
+  phrase = phrase.replace(/\s/g, "").toLocaleLowerCase();
+  const middle = Math.floor(phrase.length / 2);
 
-  for (let i = 0; i < halfLength; i++) {
-    if (phrase[i] !== phrase[phrase.length - i - 1]) {
+  for (let i = 0; i < middle; i++) {
+    if (phrase[i] !== phrase[phrase.length - 1 - i]) {
       return false;
     }
   }
@@ -226,14 +194,17 @@ export const isPalindrom = (phrase: string): boolean => {
 
 // Task 12
 
-export const getRecursionSum = (...rest: number[]) => {
-  const getSum = (arr: number[]) => arr.reduce((acc, item) => acc + item);
+export const getRecursionSum = (...rest: number[]): any => {
+  const getSum = (arr: number[]) => arr.reduce((acc, item) => acc + item, 0);
+
   let result = getSum(rest);
-  return function func(...args: number[]) {
+
+  return function getResult(...args: number[]) {
     if (args.length) {
-      result += getSum([...args]);
-      return func;
+      result += getSum(args);
+      return getResult;
     }
+
     return result;
   };
 };
@@ -248,7 +219,7 @@ export const IIFECounter = (function () {
 // Task 14
 
 export const myBind = <C, R>(
-  context: { [key: number]: any },
+  context: { [key: string]: any },
   callback: C,
   ...rest: R[]
 ) => {

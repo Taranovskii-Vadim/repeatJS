@@ -1,5 +1,32 @@
 import React from "react";
-import { findHappyNumber } from "./pureJsTasks";
+
+const tree = {
+  left: {
+    left: {},
+    right: {
+      value: 4,
+    },
+    value: 1,
+  },
+  right: {
+    left: {
+      left: {
+        left: {},
+        right: {
+          value: 5,
+        },
+        value: 2,
+      },
+      right: {},
+    },
+    right: {
+      value: 7,
+    },
+  },
+  value: 4,
+};
+
+const multiArr = [1, 2, [1, 2, 3, [4, 5], [6]], [8, 5, 6, [1, [2, 3, [6]]]]];
 
 export const App = (): JSX.Element => {
   // console.log(
