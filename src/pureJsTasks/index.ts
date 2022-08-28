@@ -234,29 +234,17 @@ export const myBind = <C, R>(
 
 // Task 15
 
-const fruits: any[] = [
-  "BaNaNa",
-  "orange",
-  "pineapple",
-  "baNana",
-  "banAna",
-  undefined,
-  0,
-  true,
-  "pineapple",
-];
-
-export const getTopFruits = (): string[] => {
-  const filteredArr: string[] = fruits
+export const getTopFruits = (fruits: any[]): string[] => {
+  const strings: string[] = fruits
     .filter((item) => typeof item === "string")
     .map((item) => item.toLowerCase());
 
-  const grouped = filteredArr.reduce((acc, item) => {
+  const counted = strings.reduce((acc, item) => {
     acc[item] = (acc[item] || 0) + 1;
     return acc;
   }, {} as { [key: string]: number });
 
-  return Object.entries(grouped)
+  return Object.entries(counted)
     .sort((a, b) => b[1] - a[1])
     .map((item) => item[0]);
 };
@@ -463,7 +451,7 @@ export const sumOfThree = (arr: number[], target: number = 0): number[][] => {
 
 // Task 25
 
-export const binarySearch = (arr: number[], target: number): number => {
+export const binarySearch = (arr: number[], target: number): number | null => {
   let left = 0;
   let right = arr.length - 1;
 
@@ -482,7 +470,7 @@ export const binarySearch = (arr: number[], target: number): number => {
     }
   }
 
-  return -1;
+  return null;
 };
 
 // Task 26

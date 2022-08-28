@@ -1,4 +1,5 @@
 import React from "react";
+import { binarySearch } from "./pureJsTasks";
 
 const tree = {
   left: {
@@ -26,9 +27,23 @@ const tree = {
   value: 4,
 };
 
+const fruits: any[] = [
+  "BaNaNa",
+  "orange",
+  "pineapple",
+  "baNana",
+  "banAna",
+  undefined,
+  0,
+  true,
+  "pineapple",
+];
+
 const multiArr = [1, 2, [1, 2, 3, [4, 5], [6]], [8, 5, 6, [1, [2, 3, [6]]]]];
 
 export const App = (): JSX.Element => {
+  console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10));
+  // console.log(getTopFruits(fruits));
   // console.log(
   //   parseUrlString(
   //     "user.name.firstname=Bob&user.name.lastname=Smith&user.color=red&theme=dark"
