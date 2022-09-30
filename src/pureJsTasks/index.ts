@@ -451,19 +451,24 @@ export const sumOfThree = (arr: number[], target: number = 0): number[][] => {
 
 // Task 25
 
-export const binarySearch = (arr: number[], target: number): number | null => {
+type BinaryResult = number | null;
+
+const binaryTarget = 10;
+const binaryArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+export const binarySearch = (): BinaryResult => {
   let left = 0;
-  let right = arr.length - 1;
+  let right = binaryArray.length - 1;
 
   while (left <= right) {
     const middle = Math.floor((left + right) / 2);
-    const candidat = arr[middle];
+    const candidat = binaryArray[middle];
 
-    if (candidat === target) {
+    if (candidat === binaryTarget) {
       return middle;
     }
 
-    if (candidat > target) {
+    if (candidat > binaryTarget) {
       right = middle - 1;
     } else {
       left = middle + 1;
@@ -698,3 +703,24 @@ export const findHappyNumber = (value: string): any => {
 export const parseUrlString = (value: string) => {};
 
 // Task 36
+
+type LabelArrayItem = {
+  readonly id: number;
+  label: string;
+  des: string;
+};
+
+type LabelArrayKey = keyof LabelArrayItem;
+
+const labelArray: LabelArrayItem[] = [
+  { label: "label1", id: 1, des: "des here 1" },
+  { label: "label2", id: 2, des: "des here 2" },
+  { label: "label3", id: 3, des: "des here 3" },
+];
+
+const labelArrayKey: LabelArrayKey = "id";
+
+export const getLabelArray = () =>
+  labelArray.map((item) => ({ [labelArrayKey]: item[labelArrayKey] }));
+
+// Task 37
