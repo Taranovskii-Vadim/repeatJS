@@ -1,5 +1,5 @@
 import React from "react";
-import { getLabelArray } from "./pureJsTasks";
+import { getTopFruits } from "./pureJsTasks";
 
 const tree = {
   left: {
@@ -41,8 +41,12 @@ const fruits: any[] = [
 
 const multiArr = [1, 2, [1, 2, 3, [4, 5], [6]], [8, 5, 6, [1, [2, 3, [6]]]]];
 
+// TODO первый вопрос про семантику в html и насколько она необходима если мы делаем SPA на реакте
+// TODO задача про поиск в табах
+// TODO задача на софт скиллы, что такое ревью, что если возникли ошибки в результате ревью, что если разработчик сделал мерж без ревью
+
 export const App = (): JSX.Element => {
-  console.log(getLabelArray());
+  // console.log(getLabelArray());
 
   // console.log(getTopFruits(fruits));
   // console.log(
