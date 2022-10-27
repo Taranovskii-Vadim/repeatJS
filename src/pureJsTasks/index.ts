@@ -724,3 +724,24 @@ export const getLabelArray = () =>
   labelArray.map((item) => ({ [labelArrayKey]: item[labelArrayKey] }));
 
 // Task 37
+
+export const recursiveSum = (arr: number[]): number =>
+  arr.length !== 1 ? arr.splice(arr.length - 1)[0] + recursiveSum(arr) : arr[0];
+
+// Task 38
+
+export const getRectMaxSizes = (length: number, height: number): any => {
+  if (!length || !height) {
+    return length || height;
+  }
+
+  if (length > height) {
+    return getRectMaxSizes(length % height, height);
+  }
+
+  if (length < height) {
+    return getRectMaxSizes(length, height % length);
+  }
+};
+
+// Task 39
