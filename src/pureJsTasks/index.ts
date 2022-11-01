@@ -745,3 +745,24 @@ export const getRectMaxSizes = (length: number, height: number): any => {
 };
 
 // Task 39
+
+export const recursiveCount = (arr: number[]): number => {
+  arr.splice(arr.length - 1);
+
+  return arr.length && arr.length + recursiveCount(arr);
+};
+
+// Task 40
+
+export const findMax = (arr: number[]): number => {
+  let result = 0;
+
+  for (let item of arr) {
+    // Сортировка выбором
+    if (item > result) {
+      result = item;
+    }
+  }
+
+  return result;
+};

@@ -1,5 +1,5 @@
 import React from "react";
-import { getRectMaxSizes, getTopFruits, recursiveSum } from "./pureJsTasks";
+import { findMax } from "./pureJsTasks";
 
 const tree = {
   left: {
@@ -47,8 +47,10 @@ const multiArr = [1, 2, [1, 2, 3, [4, 5], [6]], [8, 5, 6, [1, [2, 3, [6]]]]];
 // TODO вопросы по interceptors
 // TODO createPortal
 // TODO task about hightlight substring in string
+// TODO diff between array and list
 
 export const App = (): JSX.Element => {
+  console.log(findMax([1, 2, 3]));
   // console.log(1680 / getRectMaxSizes(1680, 640));
 
   // console.log(getTopFruits(fruits));
