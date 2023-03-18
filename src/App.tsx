@@ -48,6 +48,15 @@ const multiArr = [1, 2, [1, 2, 3, [4, 5], [6]], [8, 5, 6, [1, [2, 3, [6]]]]];
 // TODO createPortal
 // TODO task about hightlight substring in string
 // TODO diff between array and list
+// TODO question about unit tests, we have parent component and we have unit test, and we have child component but we dont have unit test but this component 100%
+// TODO what is em? rem? vh? vw?
+// TODO если у нас есть система статусов и мы обновляем статус то откуда мы должны брать новый статус?
+// TODO назвать способы подключения шрифтов в react проект
+// TODO задача с изменением цвета тега body при переходе из формы логина в продукт
+// TODO  tree-shaking what is it
+// TODO what is as in TS
+// TODO whats diff between types and interfaces
+// TODO create my own Promise.all
 
 export const App = (): JSX.Element => {
   console.log(findMax([1, 2, 3]));
