@@ -1,45 +1,5 @@
-import React from "react";
-import { findMax } from "./pureJsTasks";
-
-const tree = {
-  left: {
-    left: {},
-    right: {
-      value: 4,
-    },
-    value: 1,
-  },
-  right: {
-    left: {
-      left: {
-        left: {},
-        right: {
-          value: 5,
-        },
-        value: 2,
-      },
-      right: {},
-    },
-    right: {
-      value: 7,
-    },
-  },
-  value: 4,
-};
-
-const fruits: any[] = [
-  "BaNaNa",
-  "orange",
-  "pineapple",
-  "baNana",
-  "banAna",
-  undefined,
-  0,
-  true,
-  "pineapple",
-];
-
-const multiArr = [1, 2, [1, 2, 3, [4, 5], [6]], [8, 5, 6, [1, [2, 3, [6]]]]];
+import { useEffect } from "react";
+import { myPromiseAll } from "./pureJsTasks";
 
 // TODO первый вопрос про семантику в html и насколько она необходима если мы делаем SPA на реакте
 // TODO задача про поиск в табах
@@ -56,30 +16,9 @@ const multiArr = [1, 2, [1, 2, 3, [4, 5], [6]], [8, 5, 6, [1, [2, 3, [6]]]]];
 // TODO  tree-shaking what is it
 // TODO what is as in TS
 // TODO whats diff between types and interfaces
-// TODO create my own Promise.all
 
-export const App = (): JSX.Element => {
-  console.log(findMax([1, 2, 3]));
-  // console.log(1680 / getRectMaxSizes(1680, 640));
-
-  // console.log(getTopFruits(fruits));
-  // console.log(
-  //   parseUrlString(
-  //     "user.name.firstname=Bob&user.name.lastname=Smith&user.color=red&theme=dark"
-  //   )
-  // );
-  // console.log(
-  //   solveSudoku([
-  //     ["5", "3", ".", ".", "7", ".", ".", ".", "."],
-  //     ["6", ".", ".", "1", "9", "5", ".", ".", "."],
-  //     [".", "9", "8", ".", ".", ".", ".", "6", "."],
-  //     ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
-  //     ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
-  //     ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
-  //     [".", "6", ".", ".", ".", ".", "2", "8", "."],
-  //     [".", ".", ".", "4", "1", "9", ".", ".", "5"],
-  //     [".", ".", ".", ".", "8", ".", ".", "7", "9"],
-  //   ])
-  // );
-  return <div></div>;
+const App = (): JSX.Element => {
+  return <div>hello vite</div>;
 };
+
+export default App;

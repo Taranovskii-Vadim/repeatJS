@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from "react";
+import { memo, useMemo, useState } from "react";
 
-const IsFive = React.memo(
+const IsFive = memo(
   ({ value }: { value: number }): JSX.Element => {
     // TODO can use useMemo hook
     const getResult = () => {
@@ -20,12 +20,10 @@ const IsFive = React.memo(
   }
 );
 
-const Count = React.memo(
-  ({ id, value }: { [key: string]: number }): JSX.Element => {
-    console.log(`Count${id}`);
-    return <div>{value}</div>;
-  }
-);
+const Count = memo(({ id, value }: { [key: string]: number }): JSX.Element => {
+  console.log(`Count${id}`);
+  return <div>{value}</div>;
+});
 
 const MemoCounter = () => {
   const [count1, setCount1] = useState(() => 0);

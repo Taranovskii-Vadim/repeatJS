@@ -766,3 +766,21 @@ export const findMax = (arr: number[]): number => {
 
   return result;
 };
+
+// Task 41
+
+export const myPromiseAll = async <T>(data: Promise<T>[]): Promise<T[]> => {
+  const result: T[] = [];
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      for await (let item of data) {
+        result.push(item);
+      }
+
+      resolve(result);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};

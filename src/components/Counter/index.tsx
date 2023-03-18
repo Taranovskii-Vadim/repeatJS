@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 
-const Buttons = React.memo(
+const Buttons = memo(
   ({ onPlus, onMinus }: { [key: string]: () => void }): JSX.Element => (
     <>
       <button onClick={onMinus}>-</button>
