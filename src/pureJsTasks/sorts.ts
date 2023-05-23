@@ -37,3 +37,9 @@ export const selectionSort = (): number[] => {
 
   return data;
 };
+
+// insertionSort O(n^2) в худшем случае, O(n) в лучшем
+
+// export const insertionSort = (): number[] => {
+//   return data;
+// };
