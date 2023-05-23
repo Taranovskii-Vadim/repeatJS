@@ -1,10 +1,10 @@
-import * as Types from "./types";
+import * as Types from './types';
 
 // Task 1
 
 export const myGroupBy = (arr: any[], template: Types.TargetType) => {
   return arr.reduce((acc, item) => {
-    const key = typeof template === "string" ? item.length : template(item);
+    const key = typeof template === 'string' ? item.length : template(item);
     acc[key] = acc[key] ? [...acc[key], item] : [item];
     return acc;
   }, {});
@@ -12,10 +12,7 @@ export const myGroupBy = (arr: any[], template: Types.TargetType) => {
 
 // Task 2
 
-export const myChunk = <T extends any>(
-  arr: Array<T>,
-  length: number
-): Array<T[]> => {
+export const myChunk = <T extends any>(arr: Array<T>, length: number): Array<T[]> => {
   const result: Array<T[]> = [];
   let temp: T[] = [];
 
@@ -49,15 +46,11 @@ export const sumTwo = myPartial(sum, 2);
 // Task 4
 const logInfo = <S>(arr: S[]): string =>
   arr.reduce((acc, item) => {
-    acc += item + " ";
+    acc += item + ' ';
     return acc;
-  }, "");
+  }, '');
 
-const withDelay = <S>(
-  callback: typeof logInfo,
-  delay: number,
-  ...rest: S[]
-) => {
+const withDelay = <S>(callback: typeof logInfo, delay: number, ...rest: S[]) => {
   return (...args: S[]) => {
     return new Promise((resolve, reject) => {
       const timer = window.setTimeout(() => {
@@ -70,8 +63,8 @@ const withDelay = <S>(
 
 export async function start() {
   try {
-    const delaiedFunction = await withDelay<string>(logInfo, 2000, "Hello");
-    const result = await delaiedFunction("world");
+    const delaiedFunction = await withDelay<string>(logInfo, 2000, 'Hello');
+    const result = await delaiedFunction('world');
     console.log(result);
   } catch (e) {
     console.error(e);
@@ -96,12 +89,12 @@ export const getSumValues = (obj: any): number => {
 
 export const canDrink = (person: { age: number }) => {
   if (!person.age) {
-    throw new Error("Age does not exist");
+    throw new Error('Age does not exist');
   }
   const getDrinkResponse = (age: number) => {
-    if (age < 18) return "can not drink";
-    if (age < 21) return "can not drink in USA";
-    return "can drink";
+    if (age < 18) return 'can not drink';
+    if (age < 21) return 'can not drink in USA';
+    return 'can drink';
   };
 
   return getDrinkResponse(person.age);
@@ -126,10 +119,10 @@ export const myFlat = (arr: any[]): number[] => {
 export const isReplacementString = (str1: string, str2: string): boolean => {
   if (str1.length !== str2.length) return false;
 
-  const splited1 = str1.split("").sort();
-  const splited2 = str2.split("").sort();
+  const splited1 = str1.split('').sort();
+  const splited2 = str2.split('').sort();
 
-  return splited1.join("") === splited2.join("");
+  return splited1.join('') === splited2.join('');
 };
 
 //Task 9
@@ -144,11 +137,10 @@ export const sortOdd = (arr: number[]): number[] => {
 // Task 10
 
 const getAllOptions = (arr: string[]) => {
-  const getMaxVal = (val: number): number =>
-    val !== 1 ? val * getMaxVal(val - 1) : 1;
+  const getMaxVal = (val: number): number => (val !== 1 ? val * getMaxVal(val - 1) : 1);
 
   const result: string[] = [];
-  let variable = "";
+  let variable = '';
 
   while (result.length !== getMaxVal(arr.length)) {
     while (variable.length !== arr.length) {
@@ -161,7 +153,7 @@ const getAllOptions = (arr: string[]) => {
     if (!result.includes(variable)) {
       result.push(variable);
     }
-    variable = "";
+    variable = '';
   }
 
   return result;
@@ -169,7 +161,7 @@ const getAllOptions = (arr: string[]) => {
 
 export const getAllReplacement = (num: number): Array<number> | null => {
   const MAX_LENGTH = 3;
-  const digits = num.toString().split("");
+  const digits = num.toString().split('');
   if (digits.length <= MAX_LENGTH) {
     const allOptions = getAllOptions(digits);
     return allOptions.map((item) => +item).sort((a, b) => a - b);
@@ -180,7 +172,7 @@ export const getAllReplacement = (num: number): Array<number> | null => {
 // Task 11
 
 export const isPalindrom = (phrase: string): boolean => {
-  phrase = phrase.replace(/\s/g, "").toLocaleLowerCase();
+  phrase = phrase.replace(/\s/g, '').toLocaleLowerCase();
   const middle = Math.floor(phrase.length / 2);
 
   for (let i = 0; i < middle; i++) {
@@ -218,13 +210,9 @@ export const IIFECounter = (function () {
 
 // Task 14
 
-export const myBind = <C, R>(
-  context: { [key: string]: any },
-  callback: C,
-  ...rest: R[]
-) => {
+export const myBind = <C, R>(context: Record<string | symbol, unknown>, callback: C, ...rest: R[]) => {
   return (...args: R[]) => {
-    const uniqId = Date.now();
+    const uniqId = Symbol('id');
     context[uniqId] = callback;
     const result = context[uniqId](...rest.concat(args));
     delete context[uniqId];
@@ -235,9 +223,7 @@ export const myBind = <C, R>(
 // Task 15
 
 export const getTopFruits = (fruits: any[]): string[] => {
-  const strings: string[] = fruits
-    .filter((item) => typeof item === "string")
-    .map((item) => item.toLowerCase());
+  const strings: string[] = fruits.filter((item) => typeof item === 'string').map((item) => item.toLowerCase());
 
   const counted = strings.reduce((acc, item) => {
     acc[item] = (acc[item] || 0) + 1;
@@ -251,17 +237,14 @@ export const getTopFruits = (fruits: any[]): string[] => {
 
 // Task 16
 
-export const getVowelsCount = (
-  str: string,
-  mode: Types.LanguageMode
-): number => {
+export const getVowelsCount = (str: string, mode: Types.LanguageMode): number => {
   const getVowels = (): string[] => {
-    const enVowels = ["A", "O", "E", "U", "I", "Y"];
-    const ruVowels = ["А"];
-    return mode === "en" ? enVowels : ruVowels;
+    const enVowels = ['A', 'O', 'E', 'U', 'I', 'Y'];
+    const ruVowels = ['А'];
+    return mode === 'en' ? enVowels : ruVowels;
   };
   const template = getVowels().map((item) => item.toLowerCase());
-  const regex = new RegExp(`[${template.join("")}]`, "gi");
+  const regex = new RegExp(`[${template.join('')}]`, 'gi');
   const matched = str.match(regex);
   return matched ? matched.length : 0;
 };
@@ -281,14 +264,14 @@ export const getFibNumber = (index: number): number => {
 
 export const fizzBazz = (num: number): Types.FizzBazz => {
   if (num % 3 === 0 && num % 5 === 0) {
-    return "fizzbazz";
+    return 'fizzbazz';
   }
 
   if (num % 5 === 0) {
-    return "fizz";
+    return 'fizz';
   }
   if (num % 3 === 0) {
-    return "bazz";
+    return 'bazz';
   }
   return num;
 };
@@ -296,37 +279,38 @@ export const fizzBazz = (num: number): Types.FizzBazz => {
 // Task 19
 
 const currencies: Types.CurrencyTuple = [
-  ["usd", "sell", 3000],
-  ["usd", "sell", 3000],
-  ["usd", "buy", 10000],
-  ["rub", "buy", 2500],
-  ["eur", "buy", 7000],
-  ["eur", "buy", 8000],
-  ["eur", "sell", 6500],
+  ['usd', 'sell', 3000],
+  ['usd', 'sell', 3000],
+  ['usd', 'buy', 10000],
+  ['rub', 'buy', 2500],
+  ['eur', 'buy', 7000],
+  ['eur', 'buy', 8000],
+  ['eur', 'sell', 6500],
 ];
 
-export const getTodayTotal =
-  (): // currencies: Array<[string, "sell" | "buy", number]>
-  { [key: string]: number[] } => {
-    return currencies.reduce((acc, item) => {
-      const [cur, type, money] = item;
-      acc[cur] = acc[cur] || [0, 0];
-      acc[cur][type === "sell" ? 0 : 1] += money;
-      return acc;
-    }, {} as { [key: string]: number[] });
-  };
+export const getTodayTotal = (): // currencies: Array<[string, "sell" | "buy", number]>
+{ [key: string]: number[] } => {
+  return currencies.reduce((acc, item) => {
+    const [cur, type, money] = item;
+    acc[cur] = acc[cur] || [0, 0];
+    acc[cur][type === 'sell' ? 0 : 1] += money;
+    return acc;
+  }, {} as { [key: string]: number[] });
+};
 
 // Task 20
 
 export const getRandomHex = () => {
-  const hexSymb = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
-  let result = "#";
+  const hexSymb = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
+  let result = '#';
   for (let i = 0; i < 6; i++) {
     const randomIndex = Math.floor(Math.random() * hexSymb.length);
     result += hexSymb[randomIndex];
   }
   return result;
 };
+
+// "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0")
 
 // Task 21
 
@@ -392,10 +376,7 @@ export const getSimpleNumbers = (limit: number) => {
 
 // Task 23
 
-export const findSumOfTwo = (
-  arr: number[],
-  target: number
-): number[] | null => {
+export const findSumOfTwo = (arr: number[], target: number): number[] | null => {
   // Bad way for perf
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
@@ -566,86 +547,6 @@ export const maxDistToClosest = (arr: number[]): number => {
   return Math.max(...distants);
 };
 
-// Task 31
-
-export const solveSudoku = (sudoku: string[][]) => {
-  const size = sudoku.length;
-  const boxSize = Math.sqrt(size);
-
-  const findEmptyPosition = (): number[] => {
-    for (let r = 0; r < sudoku.length; r++) {
-      const row = sudoku[r];
-      for (let c = 0; c < row.length; c++) {
-        if (row[c] === ".") {
-          return [r, c];
-        }
-      }
-    }
-
-    return [];
-  };
-
-  const isSudokuValid = ([r, c]: number[], candidat: string): boolean => {
-    // check row
-    for (let i = 0; i < sudoku.length; i++) {
-      if (sudoku[r][i] === candidat && i !== c) {
-        return false;
-      }
-    }
-
-    // check col
-    for (let i = 0; i < sudoku.length; i++) {
-      if (sudoku[i][c] === candidat && i !== r) {
-        return false;
-      }
-    }
-
-    // check box
-
-    const boxRow = Math.floor(r / boxSize) * boxSize;
-    const boxCol = Math.floor(c / boxSize) * boxSize;
-
-    for (let i = boxRow; i < boxRow + boxSize; i++) {
-      for (let j = boxCol; j < boxCol + boxSize; j++) {
-        if (sudoku[i][j] === candidat && i !== r && j !== c) {
-          return false;
-        }
-      }
-    }
-
-    return true;
-  };
-
-  const solve = () => {
-    const currentPostion = findEmptyPosition();
-
-    if (!currentPostion.length) {
-      return true;
-    }
-
-    for (let i = 1; i <= size; i++) {
-      const insertCandidat = i.toString();
-      const isValid = isSudokuValid(currentPostion, insertCandidat);
-
-      if (isValid) {
-        const [r, c] = currentPostion;
-        sudoku[r][c] = insertCandidat;
-
-        if (solve()) {
-          return true;
-        }
-
-        sudoku[r][c] = ".";
-      }
-    }
-
-    return false;
-  };
-
-  solve();
-  return sudoku;
-};
-
 // Task 32
 
 export const isNumberPalindrom = (value: number): boolean => {
@@ -669,7 +570,7 @@ export const isNumberPalindrom = (value: number): boolean => {
 export const longestPalindrom = (value: string): string[] => {
   const palindroms: string[] = [];
   let maxValue = 0;
-  let temp = "";
+  let temp = '';
 
   for (let i = 0; i < value.length; i++) {
     for (let j = i; j < value.length; j++) {
@@ -680,7 +581,7 @@ export const longestPalindrom = (value: string): string[] => {
         maxValue = Math.max(maxValue, temp.length);
       }
     }
-    temp = "";
+    temp = '';
   }
 
   return palindroms.filter((item) => item.length === maxValue);
@@ -689,7 +590,7 @@ export const longestPalindrom = (value: string): string[] => {
 // Task 34
 
 export const findHappyNumber = (value: string): any => {
-  const entries = value.split("").reduce((acc, item) => {
+  const entries = value.split('').reduce((acc, item) => {
     acc[item] = (acc[item] || 0) + 1;
     return acc;
   }, {} as { [key: string]: number });
@@ -713,15 +614,14 @@ type LabelArrayItem = {
 type LabelArrayKey = keyof LabelArrayItem;
 
 const labelArray: LabelArrayItem[] = [
-  { label: "label1", id: 1, des: "des here 1" },
-  { label: "label2", id: 2, des: "des here 2" },
-  { label: "label3", id: 3, des: "des here 3" },
+  { label: 'label1', id: 1, des: 'des here 1' },
+  { label: 'label2', id: 2, des: 'des here 2' },
+  { label: 'label3', id: 3, des: 'des here 3' },
 ];
 
-const labelArrayKey: LabelArrayKey = "id";
+const labelArrayKey: LabelArrayKey = 'id';
 
-export const getLabelArray = () =>
-  labelArray.map((item) => ({ [labelArrayKey]: item[labelArrayKey] }));
+export const getLabelArray = () => labelArray.map((item) => ({ [labelArrayKey]: item[labelArrayKey] }));
 
 // Task 37
 

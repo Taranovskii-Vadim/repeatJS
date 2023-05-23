@@ -8,6 +8,45 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <template id="my-alert">
+      <style>
+        .root {
+          background-color: white;
+          padding: 8px 12px;
+          border-radius: 4px;
+          color: red;
+          border: 1px solid black;
+          max-width: 250px;
+        }
+      </style>
+      <div class="root">
+        <slot name="my-content">Default alert text</slot>
+      </div>
+    </template>
+
+    <custom-alert>
+      <span slot="my-content">Error</span>
+    </custom-alert>
+
+    <script>
+      {
+        customElements.define(
+          "custom-alert",
+          class extends HTMLElement {
+            constructor() {
+              super();
+              const template = document.getElementById("my-alert");
+
+              const shadowRoot = this.attachShadow({ mode: "closed" });
+
+              shadowRoot.appendChild(template.content);
+            }
+          }
+        );
+      }
+    </script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
