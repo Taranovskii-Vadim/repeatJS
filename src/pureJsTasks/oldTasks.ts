@@ -160,28 +160,6 @@ export const getFibNumber = (index: number): number => {
   return b;
 };
 
-// Task 19
-
-const currencies: Types.CurrencyTuple = [
-  ['usd', 'sell', 3000],
-  ['usd', 'sell', 3000],
-  ['usd', 'buy', 10000],
-  ['rub', 'buy', 2500],
-  ['eur', 'buy', 7000],
-  ['eur', 'buy', 8000],
-  ['eur', 'sell', 6500],
-];
-
-export const getTodayTotal = (): // currencies: Array<[string, "sell" | "buy", number]>
-{ [key: string]: number[] } => {
-  return currencies.reduce((acc, item) => {
-    const [cur, type, money] = item;
-    acc[cur] = acc[cur] || [0, 0];
-    acc[cur][type === 'sell' ? 0 : 1] += money;
-    return acc;
-  }, {} as { [key: string]: number[] });
-};
-
 // Task 20
 
 export const getRandomHex = () => {
@@ -240,23 +218,6 @@ export const checkPath = (start: Types.Coordinates, end: Types.Coordinates) => {
     }
   }
   return false;
-};
-
-// Task 22
-
-export const getSimpleNumbers = (limit: number) => {
-  const result: number[] = [];
-  const defective: { [key: number]: true } = {};
-  for (let i = 2; i <= limit; i++) {
-    if (!defective[i]) {
-      result.push(i);
-      for (let j = i * i; j < limit; j += i) {
-        defective[j] = true;
-      }
-    }
-  }
-
-  return result;
 };
 
 // Task 23
