@@ -317,35 +317,6 @@ export const sumOfThree = (arr: number[], target: number = 0): number[][] => {
 
 // Task 25
 
-type BinaryResult = number | null;
-
-const binaryTarget = 10;
-const binaryArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-export const binarySearch = (): BinaryResult => {
-  let left = 0;
-  let right = binaryArray.length - 1;
-
-  while (left <= right) {
-    const middle = Math.floor((left + right) / 2);
-    const candidat = binaryArray[middle];
-
-    if (candidat === binaryTarget) {
-      return middle;
-    }
-
-    if (candidat > binaryTarget) {
-      right = middle - 1;
-    } else {
-      left = middle + 1;
-    }
-  }
-
-  return null;
-};
-
-// Task 26
-
 // const obj = {
 //   1000: 5,
 //   500: 2,

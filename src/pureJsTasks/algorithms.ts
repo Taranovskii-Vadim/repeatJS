@@ -43,3 +43,27 @@ export const selectionSort = (): number[] => {
 // export const insertionSort = (): number[] => {
 //   return data;
 // };
+
+// binary search O(log n)
+
+export const binarySearch = (arr: number[], target: number): number | null => {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    const middle = Math.floor((left + right) / 2);
+    const candidate = arr[middle];
+
+    if (candidate === target) {
+      return middle;
+    }
+
+    if (candidate > target) {
+      right = middle - 1;
+    } else {
+      left = middle + 1;
+    }
+  }
+
+  return null;
+};
