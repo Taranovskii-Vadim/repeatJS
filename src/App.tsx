@@ -155,9 +155,6 @@ function myCall<T>(callback: () => T, context: Record<string, unknown>): T {
 
 // console.log(log(testClass)("vadim", 18));
 
-// This это определенная сущность внутри js которая содержит в себе ссылку на объект и в зависимости от того где и как мы им опериурем в this лежит характерное значение
-// Например: если мы будем логировать this внутри function в строгом режиме мы получим undefined в обычном там будет лежать ссылка на window
-
 // var greeting = "hi";
 
 // const obj = {
@@ -261,8 +258,6 @@ const App = (): JSX.Element => {
   //     },
   //   };
   // };
-
-  console.log(getTodayTotal());
 
   return (
     <div>
