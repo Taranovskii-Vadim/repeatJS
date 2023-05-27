@@ -39,6 +39,25 @@ const singleton = (function () {
 
 const user1 = singleton.getInstance({ name: 'vadim', age: 18 });
 
+// pattern constructor
+
+function Animal(this: any, name: string) {
+  this.name = name;
+}
+
+Animal.prototype.logName = function () {
+  return this.name;
+};
+
+function Cat(this: any, lifesRemain: number, name: string) {
+  Animal.call(this, name);
+}
+
+Cat.prototype = Object.create(Animal.prototype);
+Cat.prototype.constructor = Cat;
+
+const cat = new (Cat as any)(7, 'cit');
+
 // pattern fabric
 
 type StudentConfig = Config & { major: string };
