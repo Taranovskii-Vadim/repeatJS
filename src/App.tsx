@@ -4,7 +4,7 @@
 // 3) What is interceptor in frontend. Where we can use it?
 // 4) We have status system. Frontend send PUT request with new status, should we await API response to render new status or not.
 
-import { getSimpleNumbers, getTodayTotal } from './pureJsTasks';
+import { getSimpleNumbers, getTodayTotal, myFlat } from './pureJsTasks';
 import { binarySearch } from './pureJsTasks/algorithms';
 
 // Interview Tasks example

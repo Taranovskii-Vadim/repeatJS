@@ -211,3 +211,21 @@ export const getTodayTotal = (): Record<string, number[]> => {
     return acc;
   }, {} as Record<string, number[]>);
 };
+
+// Task 11
+
+export const myFlat = <D>(data: D[]): D[] => {
+  let result: D[] = [];
+
+  for (let item of data) {
+    if (Array.isArray(item)) {
+      result = [...result, ...myFlat(item)];
+    } else {
+      result = [...result, item];
+    }
+  }
+
+  return result;
+};
+
+// Task 12

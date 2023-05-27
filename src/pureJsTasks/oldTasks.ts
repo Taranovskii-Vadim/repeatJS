@@ -1,19 +1,5 @@
 import * as Types from './types';
 
-// Task 7
-
-export const myFlat = (arr: any[]): number[] => {
-  let result: any[] = [];
-  for (let item of arr) {
-    if (Array.isArray(item)) {
-      result = [...result, ...myFlat(item)];
-    } else {
-      result = [...result, item];
-    }
-  }
-  return result;
-};
-
 // Task 8
 
 export const isReplacementString = (str1: string, str2: string): boolean => {
