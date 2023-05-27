@@ -60,57 +60,47 @@ const cat = new (Cat as any)(7, 'cit');
 
 // pattern fabric
 
-type StudentConfig = Config & { major: string };
-type TeacherConfig = Config & { salary: number };
-
-abstract class Person {
+class Person {
   name: string;
 
-  age: number;
-
-  constructor({ name, age }: Config) {
+  constructor(name: string) {
     this.name = name;
-    this.age = age;
   }
 }
 
-class Student extends Person {
-  major: string;
+class Simple extends Person {
+  cost: number;
 
-  constructor({ major, ...common }: StudentConfig) {
-    super(common);
-
-    this.major = major;
+  constructor(name: string) {
+    super(name);
+    this.cost = 50;
   }
 }
 
-class Teacher extends Person {
-  salary: number;
-  constructor({ salary, ...common }: TeacherConfig) {
-    super(common);
-    this.salary = salary;
+class Permium extends Person {
+  cost: number;
+
+  constructor(name: string) {
+    super(name);
+    this.cost = 500;
   }
 }
 
-class Guard extends Teacher {
-  canSolveSudoku: boolean;
+class Factory {
+  static list = {
+    simple: Simple,
+    premium: Permium,
+  };
 
-  constructor({ canThink, ...other }: TeacherConfig & { canThink: boolean }) {
-    super(other);
+  create(name: string, type: 'simple' | 'premium' = 'simple') {
+    const Membership = Factory.list[type] || Factory.list.simple;
 
-    this.canSolveSudoku = canThink;
+    return new Membership(name);
   }
 }
 
-// TODO error OpenClosed
-class Fabric {
-  static createPersonCard(type: 'student' | 'teacher') {
-    if (type === 'student') {
-      return new Student({ name: 'vadim', age: 18, major: '' });
-    }
+const factory = new Factory();
 
-    return new Teacher({ name: 'alla', age: 67, salary: 100 });
-  }
-}
+factory.create('vadim', 'premium');
 
 // pattern decorator
