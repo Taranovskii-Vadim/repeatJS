@@ -1,44 +1,6 @@
 type Config = { name: string; age: number };
 
-// pattern module
-
-const myModule = (function () {
-  const name = 'vadim';
-  const age = 18;
-
-  const getShortInfo = () => ({ name, age });
-
-  return { getShortInfo };
-})();
-
-// pattern singleton
-
-const person = {
-  name: 'vadim',
-  age: 18,
-  major: '',
-  address: {
-    city: '',
-    district: '',
-    street: '',
-    home: '',
-    appartment: '',
-  },
-};
-
-const singleton = (function () {
-  function User(this: any, { name, age }: Config) {
-    this.name = name;
-    this.age = age;
-  }
-
-  const getInstance = (config: Config) => new (User as any)(config);
-
-  return { getInstance };
-})();
-
-const user1 = singleton.getInstance({ name: 'vadim', age: 18 });
-
+// create patterns
 // pattern constructor
 
 function Animal(this: any, name: string) {
@@ -103,4 +65,167 @@ const factory = new Factory();
 
 factory.create('vadim', 'premium');
 
+// pattern prototype
+
+const car = {
+  wheels: 4,
+  init() {
+    return this.wheels + this.owner;
+  },
+};
+
+const carWithOwner = Object.create(car);
+
+carWithOwner.owner = 'Vadim';
+
+// pattern singleton
+
+class DB {
+  data: string;
+
+  private static instance: any;
+
+  private static exists: boolean = false;
+
+  constructor(data: string) {
+    if (DB.exists) {
+      return DB.instance;
+    }
+
+    DB.exists = true;
+    DB.instance = this;
+    this.data = data;
+  }
+}
+
+const mongoDB = new DB('mongo');
+
+const sql = new DB('sql');
+
+// structure patterns
+// adapter pattern
+
+class OldCalc {
+  operations(value1: number, value2: number, operation: 'add' | 'sub') {
+    switch (operation) {
+      default:
+      case 'add':
+        return value1 + value2;
+      case 'sub':
+        return value1 - value2;
+    }
+  }
+}
+
+class NewCalc {
+  add(value1: number, value2: number): number {
+    return value1 + value2;
+  }
+
+  sub(value1: number, value2: number): number {
+    return value1 - value2;
+  }
+}
+
+class Adapter {
+  calc: NewCalc;
+
+  constructor() {
+    this.calc = new NewCalc();
+  }
+
+  operations(value1: number, value2: number, operation: 'add' | 'sub') {
+    switch (operation) {
+      default:
+      case 'add':
+        return this.calc.add(value1, value2);
+      case 'sub':
+        return this.calc.sub(value1, value2);
+    }
+  }
+}
+
 // pattern decorator
+
+class Server {
+  private ip: string;
+
+  port: number = 3000;
+
+  constructor(ip: string) {
+    this.ip = ip;
+  }
+
+  get url() {
+    return `https://${this.ip}:${this.port}`;
+  }
+}
+
+function port(server: Server, port: number) {
+  server.port = port;
+
+  return server;
+}
+
+const server = port(new Server('localhost'), 3001);
+
+// pattern facade
+
+function $(selector: string) {
+  return document.querySelector(selector);
+}
+
+$('#id');
+
+// pattern flyweight
+
+type CarConfig = {
+  brand: string;
+  model: string;
+  price: number;
+};
+
+class Car {
+  brand: string;
+  model: string;
+  price: number;
+
+  constructor({ brand, model, price }: CarConfig) {
+    this.brand = brand;
+    this.model = model;
+    this.price = price;
+  }
+}
+
+class CarFactory {
+  cars: CarConfig[] = [];
+
+  getCar({ brand, model }: Omit<CarConfig, 'price'>): CarConfig | undefined {
+    return this.cars.find((item) => item.brand === brand && item.model === model);
+  }
+
+  create({ price, ...other }: CarConfig) {
+    const candidate = this.getCar(other);
+
+    if (candidate) return candidate;
+
+    const newCar = new Car({ ...other, price });
+
+    this.cars.push(newCar);
+
+    return newCar;
+  }
+}
+
+// behave patterns
+
+// pattern module
+
+// const myModule = (function () {
+//   const name = 'vadim';
+//   const age = 18;
+
+//   const getShortInfo = () => ({ name, age });
+
+//   return { getShortInfo };
+// })();
