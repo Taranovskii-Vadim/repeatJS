@@ -229,3 +229,29 @@ export const myFlat = <D>(data: D[]): D[] => {
 };
 
 // Task 12
+
+const counter = (function () {
+  let count = 0;
+
+  return () => count++;
+})();
+
+// Task 13
+
+type Callback<D> = (...values: D[]) => void;
+type Context<D> = Record<string | symbol, string | Callback<D>>;
+
+export const myBind = <D>(ctx: Context<D>, callback: Callback<D>, ...rest: D[]) => {
+  return (...args: D[]) => {
+    const uniqId = Symbol('uniqId');
+    ctx[uniqId] = callback;
+
+    const result = ctx[uniqId](...rest.concat(args));
+
+    delete ctx[uniqId];
+
+    return result;
+  };
+};
+
+// Task 14

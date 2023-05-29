@@ -87,25 +87,6 @@ export const getRecursionSum = (...rest: number[]): any => {
   };
 };
 
-// Task 13
-
-export const IIFECounter = (function () {
-  let counter = 0;
-  return () => counter++;
-})();
-
-// Task 14
-
-export const myBind = <C, R>(context: Record<string | symbol, unknown>, callback: C, ...rest: R[]) => {
-  return (...args: R[]) => {
-    const uniqId = Symbol('id');
-    context[uniqId] = callback;
-    const result = context[uniqId](...rest.concat(args));
-    delete context[uniqId];
-    return result;
-  };
-};
-
 // Task 15
 
 export const getTopFruits = (fruits: any[]): string[] => {
@@ -262,33 +243,6 @@ export const sumOfThree = (arr: number[], target: number = 0): number[][] => {
   return result;
 };
 
-// Task 25
-
-// const obj = {
-//   1000: 5,
-//   500: 2,
-//   100: 3,
-//   50: 10,
-//   30: 6,
-// };
-
-// const getMoney = (money) => {
-//   const cur = [1000, 100, 50, 10];
-//   const result = {};
-//   for (let item of cur) {
-//     if (money === 0) {
-//       break;
-//     }
-//     while (money - item >= 0) {
-//       money -= item;
-//       result[item] = (result[item] || 0) + 1;
-//     }
-//   }
-//   return result;
-// };
-
-// console.log(getMoney(450));
-
 // Task 27
 
 export const getProfit = (arr: number[]): number => {
@@ -400,31 +354,6 @@ export const findHappyNumber = (value: string): any => {
 
   return Object.keys(entries).filter((key) => +key === entries[key]);
 };
-
-// Task 35
-
-// TODO got no idea how to solve it yet
-export const parseUrlString = (value: string) => {};
-
-// Task 36
-
-type LabelArrayItem = {
-  readonly id: number;
-  label: string;
-  des: string;
-};
-
-type LabelArrayKey = keyof LabelArrayItem;
-
-const labelArray: LabelArrayItem[] = [
-  { label: 'label1', id: 1, des: 'des here 1' },
-  { label: 'label2', id: 2, des: 'des here 2' },
-  { label: 'label3', id: 3, des: 'des here 3' },
-];
-
-const labelArrayKey: LabelArrayKey = 'id';
-
-export const getLabelArray = () => labelArray.map((item) => ({ [labelArrayKey]: item[labelArrayKey] }));
 
 // Task 37
 
