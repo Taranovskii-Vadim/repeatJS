@@ -1,17 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import Buttons from './components/Buttons';
+import Buttons from '../Buttons';
 
 const List = (): JSX.Element => {
-  const [numbers, setNumbers] = useState(() => [1, 2, 3, 4, 5, 6, 7, 8, 9]);
-
   const ulRef = useRef<HTMLUListElement>(null);
-
-  const onHandleAdd = useCallback(() => setNumbers((prev) => [...prev, prev.length + 1]), []);
+  const [numbers, setNumbers] = useState(() => [1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
   const onScroll = useCallback(() => console.log('Keeeeep scroooling....'), []);
 
-  const onDeleteScroll = useCallback(() => {
+  const handleAdd = useCallback(() => setNumbers((prev) => [...prev, prev.length + 1]), []);
+
+  const handleDelete = useCallback(() => {
     if (ulRef.current) {
       ulRef.current.removeEventListener('scroll', onScroll);
     }
@@ -30,7 +29,7 @@ const List = (): JSX.Element => {
           <li key={item}>{item}</li>
         ))}
       </ul>
-      <Buttons onHandleAdd={onHandleAdd} onDeleteScroll={onDeleteScroll} />
+      <Buttons onAdd={handleAdd} onDelete={handleDelete} />
     </div>
   );
 };
