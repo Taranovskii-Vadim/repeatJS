@@ -1,19 +1,24 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useRef } from 'react';
 
-const useDebounce = (callback: (val: string) => void, delay: number) => {
+type Callback<D> = (value: D) => void;
+
+const useDebounce = <D>(callback: Callback<D>, delay: number): Callback<D> => {
   const timer = useRef<number>();
 
-  const debounced = useCallback<(val: string) => void>(
-    (val) => {
+  const result = useCallback(
+    (value: D) => {
       if (timer.current) {
         window.clearTimeout(timer.current);
       }
-      timer.current = window.setTimeout(() => callback(val), delay);
+
+      window.setTimeout(() => {
+        callback(value);
+      }, delay);
     },
-    [callback, delay]
+    [callback, delay],
   );
 
-  return debounced;
+  return result;
 };
 
 export default useDebounce;

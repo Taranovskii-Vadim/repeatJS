@@ -254,4 +254,6 @@ export const myBind = <D>(ctx: Context<D>, callback: Callback<D>, ...rest: D[]) 
   };
 };
 
-// Task 14
+// Task 14 deep clone with functions sets maps etc
+
+// Task 15 my own Promise class
