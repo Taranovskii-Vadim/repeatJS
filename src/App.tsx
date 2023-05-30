@@ -71,45 +71,6 @@ async function test() {
 
 test();
 
-// window.name = "vadim";
-
-// const person = {
-//   name: "anna",
-//   logInfo() {
-//     const temp = () => this.name;
-
-//     setTimeout(temp.bind(this), 1000);
-//   },
-// };
-
-// console.log(person.logInfo());
-
-const vadim = {
-  age: 20,
-  logger() {
-    return this.age;
-  },
-};
-
-const anna = {
-  age: 18,
-};
-
-function myCall<T>(callback: () => T, context: Record<string, unknown>): T {
-  const uniqId = Date.now();
-
-  context[uniqId] = callback;
-  const result = (context[uniqId] as () => T)();
-
-  delete context[uniqId];
-
-  return result;
-}
-
-// console.log(vadim.logger());
-// console.log(myBind(vadim.logger, anna)());
-// console.log(myCall(vadim.logger, anna));
-
 // function Person(name: string) {
 //   this.name = name;
 //   this.sayName = () => {
@@ -256,13 +217,7 @@ const App = (): JSX.Element => {
   //   };
   // };
 
-  return (
-    <div>
-      {/* <button onClick={descrement}>minus</button>
-      <h5>{count}</h5>
-      <button>plus</button> */}
-    </div>
-  );
+  return <div></div>;
 };
 
 export default App;

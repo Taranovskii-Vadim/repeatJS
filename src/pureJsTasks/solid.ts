@@ -9,14 +9,10 @@ class Database {
 }
 
 class SqlDatabase extends Database {
-  connect(): void {}
-  readData(): void {}
-  joinTables(): void {}
+  joinTables() {}
 }
 
-class Firebase extends Database {
-  connect(): void {}
-  readData(): void {}
+class MongoDB extends Database {
   joinIndex() {}
 }
 
@@ -54,24 +50,18 @@ class Second implements Common {
 
 // D
 interface MusicApi {
-  fetchData: () => void;
+  fetchData: () => string;
 }
 
-class YandexMusicApi implements MusicApi {
+class VKMusic implements MusicApi {
   fetchData() {
-    console.log('fetch yandex music');
+    return 'vk';
   }
 }
 
-class VKMusicApi implements MusicApi {
+class YandexMusic implements MusicApi {
   fetchData() {
-    console.log('get vk music');
-  }
-}
-
-class SpotifyMusicApi implements MusicApi {
-  fetchData() {
-    console.log('get spotify music');
+    return 'yandex';
   }
 }
 
@@ -83,10 +73,12 @@ class MusicClient implements MusicApi {
   }
 
   fetchData() {
-    this.api.fetchData();
+    return this.api.fetchData();
   }
 }
 
-const fetchMusic = () => {
-  const musicClient = new MusicClient(new YandexMusicApi());
+const fetchMusicData = () => {
+  const api = new MusicClient(new YandexMusic());
+
+  api.fetchData();
 };

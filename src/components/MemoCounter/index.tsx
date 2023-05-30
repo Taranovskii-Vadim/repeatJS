@@ -1,23 +1,22 @@
-import { memo, useMemo, useState } from "react";
+import { memo, useState } from 'react';
 
 const IsFive = memo(
   ({ value }: { value: number }): JSX.Element => {
-    // TODO can use useMemo hook
     const getResult = () => {
       let i = 0;
       while (i < 6_000_000_00) i++;
 
       if (value === 5) {
-        return "this is five!!!!";
+        return 'this is five!!!!';
       }
-      return "this is not five(((((";
+      return 'this is not five(((((';
     };
 
     return <div>{getResult()}</div>;
   },
   (prev, next) => {
     return prev.value !== 5 && next.value !== 5;
-  }
+  },
 );
 
 const Count = memo(({ id, value }: { [key: string]: number }): JSX.Element => {
