@@ -6,6 +6,7 @@
 
 import List from './components/List';
 import TimerList from './components/TimerList';
+import { deepClone, myFilter, myMap } from './pureJsTasks';
 
 // Interview Tasks example
 // 1) We have string and search string. Need create a function that can return JSX with string and substring highlighted
@@ -220,11 +221,29 @@ const App = (): JSX.Element => {
   //   };
   // };
 
-  return (
-    <div>
-      <TimerList />
-    </div>
-  );
+  const template = {
+    first: 'test',
+    second: [1, 2, 3],
+    third: {
+      data: 45,
+      info: {
+        address: 'info',
+      },
+    },
+    fourth: function (value: boolean) {
+      return value;
+    },
+    fifth: new Date(),
+    sixth: new Set([1, 2, 2, 3, 4, 5, 5, 6, 6, 6, 8]),
+    seventh: new Map([
+      [{ id: 'qwe' }, 3],
+      [{ id: 'jgh' }, 5],
+    ]),
+  };
+
+  console.log(deepClone(template).fourth, template.fourth);
+
+  return <div></div>;
 };
 
 export default App;

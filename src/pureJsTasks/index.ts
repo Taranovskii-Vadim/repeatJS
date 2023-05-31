@@ -256,4 +256,54 @@ export const myBind = <D>(ctx: Context<D>, callback: Callback<D>, ...rest: D[]) 
 
 // Task 14 deep clone with functions sets maps etc
 
+export const deepClone = <D>(data: D): D => {
+  let result = {} as D;
+
+  for (let key in data) {
+    const item = data[key];
+
+    if (Array.isArray(item)) {
+      result = { ...result, [key]: [...item] };
+    } else if (item instanceof Date) {
+      result = { ...result, [key]: new Date(item) };
+    } else if (item instanceof Set) {
+      result = { ...result, [key]: new Set(item) };
+    } else if (item instanceof Map) {
+      result = { ...result, [key]: new Map(item) };
+    } else if (typeof item === 'function') {
+      result = { ...result, [key]: new Function('return ' + item.toString()) };
+    } else if (typeof item === 'object' && item !== null) {
+      result = { ...result, [key]: deepClone(item) };
+    } else {
+      result = { ...result, [key]: item };
+    }
+  }
+
+  return result;
+};
+
 // Task 15 my own Promise class
+
+// Task 16
+
+type CallbackFn<D, R = D> = (item: D, index: number, arr: D[]) => R;
+
+export const myMap = <D>(data: D[], callback: CallbackFn<D>): D[] => {
+  return data.reduce((acc, item, ...rest) => {
+    acc.push(callback(item, ...rest));
+
+    return acc;
+  }, [] as D[]);
+};
+
+export const myFilter = <D>(data: D[], callback: CallbackFn<D, boolean>): D[] => {
+  return data.reduce((acc, item, ...other) => {
+    if (callback(item, ...other)) {
+      acc.push(item);
+    }
+
+    return acc;
+  }, [] as D[]);
+};
+
+// Task 17
