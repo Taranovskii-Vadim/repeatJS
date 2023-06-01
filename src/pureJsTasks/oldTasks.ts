@@ -70,23 +70,6 @@ export const isPalindrom = (phrase: string): boolean => {
   return true;
 };
 
-// Task 12
-
-export const getRecursionSum = (...rest: number[]): any => {
-  const getSum = (arr: number[]) => arr.reduce((acc, item) => acc + item, 0);
-
-  let result = getSum(rest);
-
-  return function getResult(...args: number[]) {
-    if (args.length) {
-      result += getSum(args);
-      return getResult;
-    }
-
-    return result;
-  };
-};
-
 // Task 15
 
 export const getTopFruits = (fruits: any[]): string[] => {
@@ -354,11 +337,6 @@ export const findHappyNumber = (value: string): any => {
 
   return Object.keys(entries).filter((key) => +key === entries[key]);
 };
-
-// Task 37
-
-export const recursiveSum = (arr: number[]): number =>
-  arr.length !== 1 ? arr.splice(arr.length - 1)[0] + recursiveSum(arr) : arr[0];
 
 // Task 38
 

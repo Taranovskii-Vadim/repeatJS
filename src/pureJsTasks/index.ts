@@ -254,7 +254,27 @@ export const myBind = <D>(ctx: Context<D>, callback: Callback<D>, ...rest: D[]) 
   };
 };
 
-// Task 14 deep clone with functions sets maps etc
+// Task 14 deep clone
+
+const template = {
+  first: 'test',
+  second: [1, 2, 3],
+  third: {
+    data: 45,
+    info: {
+      address: 'info',
+    },
+  },
+  fourth: function (value: boolean) {
+    return value;
+  },
+  fifth: new Date(),
+  sixth: new Set([1, 2, 2, 3, 4, 5, 5, 6, 6, 6, 8]),
+  seventh: new Map([
+    [{ id: 'qwe' }, 3],
+    [{ id: 'jgh' }, 5],
+  ]),
+};
 
 export const deepClone = <D>(data: D): D => {
   let result = {} as D;
@@ -307,3 +327,96 @@ export const myFilter = <D>(data: D[], callback: CallbackFn<D, boolean>): D[] =>
 };
 
 // Task 17
+
+export const closureSum = (...init: number[]) => {
+  const getSum = (arr: number[]) => arr.reduce((acc, item) => acc + item, 0);
+
+  let result = getSum(init);
+
+  return function getResult(...value: number[]) {
+    if (value.length) {
+      result += getSum(value);
+      return getResult;
+    }
+
+    return result;
+  };
+};
+
+// Task 18
+
+export const recursiveSum = (data: number[]): number =>
+  data.length !== 1 ? data.splice(data.length - 1)[0] + recursiveSum(data) : data[0];
+
+// Task 19
+
+const maxDepth = (tree: Tree): number => {
+  let result = 0;
+
+  function findDepth(node: Tree, depth: number) {
+    if (!node) return;
+
+    if (depth > result) {
+      result = depth;
+    }
+
+    if (node.left) {
+      findDepth(node.left, depth + 1);
+    }
+
+    if (node.right) {
+      findDepth(node.right, depth + 1);
+    }
+  }
+
+  findDepth(tree, 1);
+
+  return result;
+};
+
+export const maxDepthResult = maxDepth(testTree);
+
+// task 20
+
+type PromiseResolve = <D>(value: D) => unknown;
+type PromiseCallback = (resolve: PromiseResolve, reject: () => void) => void;
+
+class MyPromise {
+  private callbacks: PromiseResolve[] = [];
+
+  constructor(callback: PromiseCallback) {
+    callback(this.resolve.bind(this), this.reject.bind(this));
+  }
+
+  private resolve<D>(value: D): void {
+    this.callbacks.forEach((callback) => {
+      callback(value);
+    });
+  }
+
+  private reject(): void {}
+
+  then(callback: PromiseResolve): MyPromise {
+    return new MyPromise((resolve, reject) => {
+      this.callbacks.push((value) => {
+        const result = callback(value);
+
+        if (result instanceof MyPromise) {
+          result.then(resolve);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
+
+  catch() {}
+
+  finally() {}
+}
+
+export const promise = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(10);
+  }, 1000);
+});

@@ -4,9 +4,7 @@
 // 3) What is interceptor in frontend. Where we can use it?
 // 4) We have status system. Frontend send PUT request with new status, should we await API response to render new status or not.
 
-import List from './components/List';
-import TimerList from './components/TimerList';
-import { deepClone, myFilter, myMap } from './pureJsTasks';
+import { closureSum, maxDepth, maxDepthResult, promise, recursiveSum } from './pureJsTasks';
 
 // Interview Tasks example
 // 1) We have string and search string. Need create a function that can return JSX with string and substring highlighted
@@ -221,27 +219,48 @@ const App = (): JSX.Element => {
   //   };
   // };
 
-  const template = {
-    first: 'test',
-    second: [1, 2, 3],
-    third: {
-      data: 45,
-      info: {
-        address: 'info',
-      },
-    },
-    fourth: function (value: boolean) {
-      return value;
-    },
-    fifth: new Date(),
-    sixth: new Set([1, 2, 2, 3, 4, 5, 5, 6, 6, 6, 8]),
-    seventh: new Map([
-      [{ id: 'qwe' }, 3],
-      [{ id: 'jgh' }, 5],
-    ]),
-  };
+  // const data = [
+  //   { country: 'russia', cities: ['moscow', 'samara'] },
+  //   { country: 'england', cities: ['london'] },
+  // ];
 
-  console.log(deepClone(template).fourth, template.fourth);
+  // const [index, setIndex] = useState<number>(0);
+
+  // const handleChange = (value: number): void => setIndex(value);
+
+  // return (
+  //   <div>
+  //     <select value={index} onChange={(e) => handleChange(+e.target.value)}>
+  //       {data.map(({ country }, index) => (
+  //         <option key={country} value={index}>
+  //           {country}
+  //         </option>
+  //       ))}
+  //     </select>
+  //     <select>
+  //       {data[index].cities.map((item) => (
+  //         <option key={item} value={item}>
+  //           {item}
+  //         </option>
+  //       ))}
+  //     </select>
+  //   </div>
+  // );
+
+  promise
+    .then((item) => {
+      console.log(item);
+
+      return item * 2;
+    })
+    .then((item) => {
+      console.log(item);
+
+      return item * 2;
+    })
+    .then((item) => {
+      console.log(item);
+    });
 
   return <div></div>;
 };
