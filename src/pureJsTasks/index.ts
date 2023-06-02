@@ -420,3 +420,38 @@ export const promise = new MyPromise((resolve, reject) => {
     resolve(10);
   }, 1000);
 });
+
+// Task 21
+
+class AnimalDictionary {
+  private data: Record<string, boolean> = {};
+
+  constructor(animals: string[]) {
+    this.data = animals.reduce((acc, item) => {
+      acc[item] = true;
+
+      for (let i = 0; i < item.length; i++) {
+        const start = item.slice(0, i);
+        const end = item.slice(i + 1);
+
+        acc[`${start}*${end}`] = true;
+      }
+
+      return acc;
+    }, {} as Record<string, boolean>);
+  }
+
+  isInDictionary(value: string): boolean {
+    return !!this.data[value];
+    // if (this.data[value]) return true;
+    // if (!value.includes('*')) return false;
+
+    // return Object.values(this.data).some((item) => {
+    //   const regex = new RegExp(value.replaceAll('*', '.'));
+
+    //   return regex.test(item);
+    // });
+  }
+}
+
+export const dictionary = new AnimalDictionary(['cat', 'bat', 'fox', 'lion']);
