@@ -4,7 +4,7 @@
 // 3) What is interceptor in frontend. Where we can use it?
 // 4) We have status system. Frontend send PUT request with new status, should we await API response to render new status or not.
 
-import { dictionary, promise } from './pureJsTasks';
+import { dict, promise, recursiveString } from './pureJsTasks';
 
 // Interview Tasks example
 // 1) We have string and search string. Need create a function that can return JSX with string and substring highlighted
@@ -259,7 +259,7 @@ const App = (): JSX.Element => {
       return item;
     });
 
-  // console.log(dictionary.isInDictionary('fo*'));
+  console.log(dict.isInDictionary('c*t'));
 
   return <div></div>;
 };

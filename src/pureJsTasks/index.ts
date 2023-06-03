@@ -419,11 +419,11 @@ export const promise = new MyPromise<number>((resolve, reject) => {
 
 // Task 21
 
-class AnimalDictionary {
-  private data: Record<string, boolean> = {};
+class Dictionary {
+  private data: Record<string, true>;
 
-  constructor(animals: string[]) {
-    this.data = animals.reduce((acc, item) => {
+  constructor(initValue: string[]) {
+    this.data = initValue.reduce((acc, item) => {
       acc[item] = true;
 
       for (let i = 0; i < item.length; i++) {
@@ -434,20 +434,21 @@ class AnimalDictionary {
       }
 
       return acc;
-    }, {} as Record<string, boolean>);
+    }, {} as Record<string, true>);
   }
 
   isInDictionary(value: string): boolean {
     return !!this.data[value];
-    // if (this.data[value]) return true;
-    // if (!value.includes('*')) return false;
+    //  if (!value.includes('*'))
+    // const regex = new RegExp(value.replace('*', '.'));
 
-    // return Object.values(this.data).some((item) => {
-    //   const regex = new RegExp(value.replaceAll('*', '.'));
-
-    //   return regex.test(item);
-    // });
+    // return Object.keys(this.data).some((item) => regex.test(item));
   }
 }
 
-export const dictionary = new AnimalDictionary(['cat', 'bat', 'fox', 'lion']);
+export const dict = new Dictionary(['cat', 'bat', 'pine', 'apple', 'fox']);
+
+// Task 22
+
+export const recursiveString = (value: string): string =>
+  value.length ? value[value.length - 1] + recursiveString(value.slice(0, value.length - 1)) : '';
