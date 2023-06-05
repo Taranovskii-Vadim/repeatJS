@@ -452,3 +452,41 @@ export const dict = new Dictionary(['cat', 'bat', 'pine', 'apple', 'fox']);
 
 export const recursiveString = (value: string): string =>
   value.length ? value[value.length - 1] + recursiveString(value.slice(0, value.length - 1)) : '';
+
+// Task 23
+
+// 17 - 1 = 16; 1 => 0
+// 17 - 7 = 10; 7 => 1
+// 17 - 10 = 7; return [1, 2]
+
+export const findElementsSum = (data: number[], target: number): number[] => {
+  const checked = new Map();
+
+  for (let i = 0; i < data.length; i++) {
+    const diff = target - data[i];
+
+    if (checked.has(diff)) {
+      return [checked.get(diff), i];
+    } else {
+      checked.set(data[i], i);
+    }
+  }
+
+  return [];
+};
+
+// Task 24
+
+export const stonks = (data: number[]): number => {
+  let profit = 0;
+  let min = data[0];
+
+  for (let i = 0; i < data.length; i++) {
+    min = Math.min(min, data[i]);
+    profit = Math.max(profit, data[i] - min);
+  }
+
+  return profit;
+};
+
+// Task 25
