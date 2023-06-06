@@ -24,8 +24,9 @@ export const bubbleSort = (): number[] => {
 export const selectionSort = (): number[] => {
   for (let i = 0; i < data.length; i++) {
     let minIndex = i;
+
     for (let j = i; j < data.length; j++) {
-      if (data[minIndex] > data[j]) {
+      if (data[j] < data[minIndex]) {
         minIndex = j;
       }
     }
@@ -40,9 +41,19 @@ export const selectionSort = (): number[] => {
 
 // insertionSort O(n^2) в худшем случае, O(n) в лучшем
 
-// export const insertionSort = (): number[] => {
-//   return data;
-// };
+export const insertionSort = (): number[] => {
+  for (let i = 1; i < data.length; i++) {
+    let j = i;
+    let temp = data[i];
+    while (j > 0 && data[j - 1] > temp) {
+      data[j] = data[j - 1];
+      j--;
+    }
+    data[j] = temp;
+  }
+
+  return data;
+};
 
 // binary search O(log n)
 

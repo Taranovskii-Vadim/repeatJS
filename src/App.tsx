@@ -5,6 +5,7 @@
 // 4) We have status system. Frontend send PUT request with new status, should we await API response to render new status or not.
 
 import { getPossibleReplacement } from './pureJsTasks';
+import { insertionSort } from './pureJsTasks/algorithms';
 
 // Interview Tasks example
 // 1) We have string and search string. Need create a function that can return JSX with string and substring highlighted
@@ -239,7 +240,7 @@ const App = (): JSX.Element => {
   //   </div>
   // );
 
-  console.log(getPossibleReplacement(123));
+  console.log(insertionSort());
 
   return <div></div>;
 };

@@ -302,8 +302,6 @@ export const deepClone = <D>(data: D): D => {
   return result;
 };
 
-// Task 15 my own Promise class
-
 // Task 16
 
 type CallbackFn<D, R = D> = (item: D, index: number, arr: D[]) => R;
