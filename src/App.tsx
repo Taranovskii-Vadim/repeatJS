@@ -4,7 +4,7 @@
 // 3) What is interceptor in frontend. Where we can use it?
 // 4) We have status system. Frontend send PUT request with new status, should we await API response to render new status or not.
 
-import { dict, findElementsSum, promise, recursiveString, stonks } from './pureJsTasks';
+import { getPossibleReplacement } from './pureJsTasks';
 
 // Interview Tasks example
 // 1) We have string and search string. Need create a function that can return JSX with string and substring highlighted
@@ -134,14 +134,6 @@ test();
 // obj.fo();
 
 const App = (): JSX.Element => {
-  // const [person, setPerson] = useState({ name: "vadim" });
-  // const [count, setCount] = useState(5);
-
-  // const descrement = () => {
-  //   setCount((prev) => prev - 1);
-  //   setCount((prev) => prev - 1);
-  // };
-
   // const testString = {
   //   0: "h",
   //   1: "e",
@@ -247,17 +239,7 @@ const App = (): JSX.Element => {
   //   </div>
   // );
 
-  // promise
-  //   .then((item) => {
-  //     console.log(item);
-
-  //     return item * 2;
-  //   })
-  //   .then((item) => {
-  //     console.log(item);
-
-  //     return item;
-  //   });
+  console.log(getPossibleReplacement(123));
 
   return <div></div>;
 };

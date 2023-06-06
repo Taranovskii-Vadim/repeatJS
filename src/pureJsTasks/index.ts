@@ -490,3 +490,27 @@ export const stonks = (data: number[]): number => {
 };
 
 // Task 25
+
+export const getPossibleReplacement = (value: number): number[] => {
+  const result: number[] = [];
+  const str = value.toString();
+  const data = str.split('');
+
+  for (let i = 0; i < str.length; i++) {
+    for (let j = 0; j < str.length; j++) {
+      let temp = data[j];
+      data[j] = data[j + 1];
+      data[j + 1] = temp;
+
+      const candidate = +data.join('');
+
+      if (!result.includes(candidate)) {
+        result.push(candidate);
+      }
+    }
+  }
+
+  return result;
+};
+
+// Task 26

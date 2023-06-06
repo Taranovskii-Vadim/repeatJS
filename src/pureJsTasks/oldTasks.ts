@@ -20,41 +20,6 @@ export const sortOdd = (arr: number[]): number[] => {
   return arr.map((item) => (item % 2 ? odd[counter++] : item));
 };
 
-// Task 10
-
-const getAllOptions = (arr: string[]) => {
-  const getMaxVal = (val: number): number => (val !== 1 ? val * getMaxVal(val - 1) : 1);
-
-  const result: string[] = [];
-  let variable = '';
-
-  while (result.length !== getMaxVal(arr.length)) {
-    while (variable.length !== arr.length) {
-      const randomIndex = Math.floor(Math.random() * arr.length);
-      const randItem = arr[randomIndex];
-      if (!variable.includes(randItem)) {
-        variable += randItem;
-      }
-    }
-    if (!result.includes(variable)) {
-      result.push(variable);
-    }
-    variable = '';
-  }
-
-  return result;
-};
-
-export const getAllReplacement = (num: number): Array<number> | null => {
-  const MAX_LENGTH = 3;
-  const digits = num.toString().split('');
-  if (digits.length <= MAX_LENGTH) {
-    const allOptions = getAllOptions(digits);
-    return allOptions.map((item) => +item).sort((a, b) => a - b);
-  }
-  return null;
-};
-
 // Task 11
 
 export const isPalindrom = (phrase: string): boolean => {
