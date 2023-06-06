@@ -78,3 +78,30 @@ export const binarySearch = (arr: number[], target: number): number | null => {
 
   return null;
 };
+
+// merge sort O (n * logn)
+
+const merge = (left: number[], right: number[]): number[] => {
+  let i = 0;
+  let j = 0;
+  const result: number[] = [];
+
+  while (i < left.length && j < right.length) {
+    result.push(left[i] < right[j] ? left[i++] : right[j++]);
+  }
+
+  return result.concat(i < left.length ? left.slice(i) : right.slice(j));
+};
+
+const mergeSort = (arr: number[]): number[] => {
+  if (arr.length > 1) {
+    const middle = Math.floor(data.length / 2);
+    const left = mergeSort(arr.slice(0, middle));
+    const right = mergeSort(arr.slice(middle, data.length));
+    arr = merge(left, right);
+  }
+
+  return arr;
+};
+
+export const mergeSortResult = mergeSort(data);
