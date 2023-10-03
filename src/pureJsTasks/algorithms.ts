@@ -6,14 +6,23 @@ const swap = (a: number, b: number): void => {
   data[b] = temp;
 };
 
+// [2, 1, 7]
+
 // bubble sort O(n^2) в худшем случае, O(n) в лучшем
 export const bubbleSort = (): number[] => {
-  for (let i = 0; i < data.length; i++) {
-    for (let j = 0; j < data.length; j++) {
-      if (data[j] > data[j + 1]) {
-        swap(j, j + 1);
+  let length = data.length;
+
+  while (length !== 0) {
+    let maxIndex = 0;
+    for (let i = 0; i < length; i++) {
+      if (data[i] > data[i + 1]) {
+        let temp = data[i];
+        data[i] = data[i + 1];
+        data[i + 1] = temp;
+        maxIndex = i;
       }
     }
+    length = maxIndex;
   }
 
   return data;
@@ -25,7 +34,7 @@ export const selectionSort = (): number[] => {
   for (let i = 0; i < data.length; i++) {
     let minIndex = i;
 
-    for (let j = i; j < data.length; j++) {
+    for (let j = i + 1; j < data.length; j++) {
       if (data[j] < data[minIndex]) {
         minIndex = j;
       }

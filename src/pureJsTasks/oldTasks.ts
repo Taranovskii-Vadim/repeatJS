@@ -69,9 +69,11 @@ export const getVowelsCount = (str: string, mode: Types.LanguageMode): number =>
 export const getFibNumber = (index: number): number => {
   let a = 0,
     b = 1;
+
   for (let i = 0; i < index - 2; i++) {
     [a, b] = [b, a + b];
   }
+
   return b;
 };
 
@@ -333,7 +335,6 @@ export const findMax = (arr: number[]): number => {
   let result = 0;
 
   for (let item of arr) {
-    // Сортировка выбором
     if (item > result) {
       result = item;
     }

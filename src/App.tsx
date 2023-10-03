@@ -4,8 +4,7 @@
 // 3) What is interceptor in frontend. Where we can use it?
 // 4) We have status system. Frontend send PUT request with new status, should we await API response to render new status or not.
 
-import { getPossibleReplacement } from './pureJsTasks';
-import { insertionSort, mergeSortResult } from './pureJsTasks/algorithms';
+import TicTacToe from './components/TicTacToe';
 
 // Interview Tasks example
 // 1) We have string and search string. Need create a function that can return JSX with string and substring highlighted
@@ -134,113 +133,85 @@ test();
 
 // obj.fo();
 
+// const testString = {
+//   0: "h",
+//   1: "e",
+//   2: "l",
+//   3: "l",
+//   4: "o",
+//   length: 5,
+
+//   // *[Symbol.iterator]() {
+//   //   for (let item = 0; item < this.length; item++) {
+//   //     yield this[item];
+//   //   }
+//   // },
+// };
+
+// testString[Symbol.iterator] = function () {
+//   return {
+//     ...this,
+//     currentIndex: -1,
+//     next() {
+//       this.currentIndex = ++this.currentIndex;
+
+//       if (this.currentIndex !== this.length) {
+//         return { done: false, value: this[this.currentIndex] };
+//       }
+//       return { done: true };
+//     },
+//   };
+// };
+
+// for (let item of testString) {
+//   console.log(item);
+// }
+
+const route = {
+  startPosition: 0,
+  goalPosition: 15,
+  step: 1.3,
+
+  // *[Symbol.iterator]() {
+  //   for (let item = this.startPosition; item <= this.goalPosition; item++) {
+  //     yield item;
+  //   }
+  // },
+
+  // [Symbol.iterator]() {
+  //   return this;
+  // },
+
+  // next() {
+  //   const value = +(this.startPosition += this.step).toFixed(1);
+
+  //   if (value < this.goalPosition) {
+  //     return { done: false, value };
+  //   } else {
+  //     return { done: true };
+  //   }
+  // },
+};
+
+// route[Symbol.iterator] = function () {
+//   return {
+//     start: this.startPosition,
+//     end: this.goalPosition,
+//     step: this.step,
+//     next() {
+//       const value = +(this.start += this.step).toFixed(1);
+
+//       if (value < this.end) {
+//         return { done: false, value };
+//       } else {
+//         return { done: true };
+//       }
+//     },
+//   };
+// };
+
 const App = (): JSX.Element => {
-  // const testString = {
-  //   0: "h",
-  //   1: "e",
-  //   2: "l",
-  //   3: "l",
-  //   4: "o",
-  //   length: 5,
-
-  //   // *[Symbol.iterator]() {
-  //   //   for (let item = 0; item < this.length; item++) {
-  //   //     yield this[item];
-  //   //   }
-  //   // },
-  // };
-
-  // testString[Symbol.iterator] = function () {
-  //   return {
-  //     ...this,
-  //     currentIndex: -1,
-  //     next() {
-  //       this.currentIndex = ++this.currentIndex;
-
-  //       if (this.currentIndex !== this.length) {
-  //         return { done: false, value: this[this.currentIndex] };
-  //       }
-  //       return { done: true };
-  //     },
-  //   };
-  // };
-
-  // for (let item of testString) {
-  //   console.log(item);
-  // }
-
-  const route = {
-    startPosition: 0,
-    goalPosition: 15,
-    step: 1.3,
-
-    // *[Symbol.iterator]() {
-    //   for (let item = this.startPosition; item <= this.goalPosition; item++) {
-    //     yield item;
-    //   }
-    // },
-
-    // [Symbol.iterator]() {
-    //   return this;
-    // },
-
-    // next() {
-    //   const value = +(this.startPosition += this.step).toFixed(1);
-
-    //   if (value < this.goalPosition) {
-    //     return { done: false, value };
-    //   } else {
-    //     return { done: true };
-    //   }
-    // },
-  };
-
-  // route[Symbol.iterator] = function () {
-  //   return {
-  //     start: this.startPosition,
-  //     end: this.goalPosition,
-  //     step: this.step,
-  //     next() {
-  //       const value = +(this.start += this.step).toFixed(1);
-
-  //       if (value < this.end) {
-  //         return { done: false, value };
-  //       } else {
-  //         return { done: true };
-  //       }
-  //     },
-  //   };
-  // };
-
-  // const data = [
-  //   { country: 'russia', cities: ['moscow', 'samara'] },
-  //   { country: 'england', cities: ['london'] },
-  // ];
-
-  // const [index, setIndex] = useState<number>(0);
-
-  // const handleChange = (value: number): void => setIndex(value);
-
-  // return (
-  //   <div>
-  //     <select value={index} onChange={(e) => handleChange(+e.target.value)}>
-  //       {data.map(({ country }, index) => (
-  //         <option key={country} value={index}>
-  //           {country}
-  //         </option>
-  //       ))}
-  //     </select>
-  //     <select>
-  //       {data[index].cities.map((item) => (
-  //         <option key={item} value={item}>
-  //           {item}
-  //         </option>
-  //       ))}
-  //     </select>
-  //   </div>
-  // );
-
-  return <div></div>;
+  return <TicTacToe />;
 };
 
 export default App;
