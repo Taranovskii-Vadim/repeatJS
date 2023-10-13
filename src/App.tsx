@@ -4,9 +4,6 @@
 // 3) What is interceptor in frontend. Where we can use it?
 // 4) We have status system. Frontend send PUT request with new status, should we await API response to render new status or not.
 
-import { useEffect } from 'react';
-import { findArrItemsSum } from './pureJsTasks';
-
 // Interview Tasks example
 // 1) We have string and search string. Need create a function that can return JSX with string and substring highlighted
 
@@ -49,21 +46,21 @@ import { findArrItemsSum } from './pureJsTasks';
 //   return result;
 // };
 
-let list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
-      next: {
-        value: 4,
-        next: null,
-      },
-    },
-  },
-};
+// let list = {
+//   value: 1,
+//   next: {
+//     value: 2,
+//     next: {
+//       value: 3,
+//       next: {
+//         value: 4,
+//         next: null,
+//       },
+//     },
+//   },
+// };
 
-type List = { value: number; next: List | null };
+// type List = { value: number; next: List | null };
 
 // const printList = ({ next, value }: List): string => (next ? `${value}, ${printList(next)}` : value.toString());
 
@@ -78,7 +75,7 @@ type List = { value: number; next: List | null };
 //   return result;
 // };
 
-const countValues = ({ value, next }: List): number => (next ? value + countValues(next) : value);
+// const countValues = ({ value, next }: List): number => (next ? value + countValues(next) : value);
 
 const App = (): JSX.Element => {
   return <div></div>;

@@ -536,3 +536,69 @@ export const findArrItemsSum = (arr1: number[], arr2: number[]): number[] => {
 };
 
 // Task 27
+
+class jQuery {
+  private node: HTMLElement | null = null;
+
+  constructor(selector: string) {
+    this.node = document.querySelector(selector);
+  }
+
+  addClass(classname: string) {
+    if (this.node) {
+      this.node.classList.add(classname);
+    }
+
+    return this;
+  }
+
+  removeClass(classname: string) {
+    if (this.node) {
+      this.node.classList.remove(classname);
+    }
+
+    return this;
+  }
+
+  html(markup: string) {
+    if (this.node) {
+      this.node.innerHTML = markup;
+    }
+
+    return this;
+  }
+}
+
+export const $ = (selector: string) => new jQuery(selector);
+
+/////////////////////////////////
+
+// export const $ = (selector: string) => {
+//   const node = document.querySelector(selector);
+
+//   return {
+//     addClass(classname: string) {
+//       if (node) {
+//         node.classList.add(classname);
+//       }
+
+//       return this;
+//     },
+//     removeClass(classname: string) {
+//       if (node) {
+//         node.classList.remove(classname);
+//       }
+
+//       return this;
+//     },
+//     html(markup: string) {
+//       if (node) {
+//         node.innerHTML = markup;
+//       }
+
+//       return this;
+//     },
+//   };
+// };
+
+// Task 28
