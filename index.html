@@ -32,17 +32,17 @@
     <script>
       {
         customElements.define(
-          "custom-alert",
+          'custom-alert',
           class extends HTMLElement {
             constructor() {
               super();
-              const template = document.getElementById("my-alert");
+              const template = document.getElementById('my-alert');
 
-              const shadowRoot = this.attachShadow({ mode: "closed" });
+              const shadowRoot = this.attachShadow({ mode: 'closed' });
 
               shadowRoot.appendChild(template.content);
             }
-          }
+          },
         );
       }
     </script>

@@ -512,3 +512,27 @@ export const getPossibleReplacement = (value: number): number[] => {
 };
 
 // Task 26
+
+export const findArrItemsSum = (arr1: number[], arr2: number[]): number[] => {
+  let temp = 0;
+
+  if (arr1.length > arr2.length) arr2 = new Array(arr1.length - arr2.length).fill(0).concat(arr2);
+  if (arr2.length > arr1.length) arr1 = new Array(arr2.length - arr1.length).fill(0).concat(arr1);
+
+  const result = arr1.reduceRight((acc, item, index) => {
+    const sum = item + arr2[index] + temp;
+
+    const isMore = sum >= 10;
+    temp = isMore ? 1 : 0;
+
+    acc[index] = isMore ? sum - 10 : sum;
+
+    return acc;
+  }, [] as number[]);
+
+  temp && result.unshift(temp);
+
+  return result;
+};
+
+// Task 27
