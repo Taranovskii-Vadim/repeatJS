@@ -602,3 +602,19 @@ export const $ = (selector: string) => new jQuery(selector);
 // };
 
 // Task 28
+
+export const sortPowedArray = (data: number[]): number[] => {
+  for (let i = data.length - 1; i >= 0; i--) {
+    if (Math.abs(data[i]) > Math.abs(data[0])) {
+      data[i] = Math.pow(data[i], 2);
+    } else {
+      const temp = Math.pow(data[0], 2);
+      data[0] = data[i];
+      data[i] = temp;
+    }
+  }
+
+  return data;
+};
+
+// Task 29

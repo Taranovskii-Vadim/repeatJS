@@ -4,6 +4,8 @@
 // 3) What is interceptor in frontend. Where we can use it?
 // 4) We have status system. Frontend send PUT request with new status, should we await API response to render new status or not.
 
+import { sortPowedArray } from './pureJsTasks';
+
 // Interview Tasks example
 // 1) We have string and search string. Need create a function that can return JSX with string and substring highlighted
 
@@ -78,6 +80,9 @@
 // const countValues = ({ value, next }: List): number => (next ? value + countValues(next) : value);
 
 const App = (): JSX.Element => {
+  // console.log(sortPowedArray([-3, 2, 4]));
+  // console.log(sortPowedArray([-4, -2, 0, 3, 5]));
+
   return <div></div>;
 };
 
