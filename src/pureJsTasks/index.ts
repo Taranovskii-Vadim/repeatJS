@@ -618,3 +618,31 @@ export const sortPowedArray = (data: number[]): number[] => {
 };
 
 // Task 29
+
+export const findDataInObject = (value: any, path: string): any => {
+  // First
+  // for (let item of path) {
+  //   if (item === '.') continue;
+  //   if (!value[item]) return null;
+  //   value = value[item];
+  // }
+  // return value;
+
+  // Second
+  if (!path) return value;
+
+  const candidate = value[path[0]];
+
+  if (!candidate) return null;
+
+  return findDataInObject(candidate, path.slice(2));
+};
+
+// Task 30
+
+// [0, 2, 0, -3, 0, 1] -> [2, -3, 1, 0, 0, 0]
+// [2, 0, 0, 0, 2, 5] -> [2, 2, 5, 0, 0, 0]
+
+// export const moveZerosToEnd = (data: number[]): number[] => {
+//   return data;
+// };
