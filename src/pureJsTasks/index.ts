@@ -640,6 +640,36 @@ export const findDataInObject = (value: any, path: string): any => {
 
 // Task 30
 
+// 1
+// 1 + 2
+// 1 + 2 + 1
+// 1 + 2 + 1 + 9 = 13
+
+// 1 + 2 + 7 = 10
+
+export const findMaxLeafSum = (tree: Tree): number => {
+  let result = 0;
+
+  function dfs(node: Tree, currentSum: number) {
+    if (!node) return null;
+
+    const currentValue = currentSum + node.value;
+
+    if (currentValue > result) {
+      result = currentValue;
+    }
+
+    dfs(node.left, currentValue);
+    dfs(node.right, currentValue);
+  }
+
+  dfs(tree, result);
+
+  return result;
+};
+
+// Task 31
+
 // [0, 2, 0, -3, 0, 1] -> [2, -3, 1, 0, 0, 0]
 // [2, 0, 0, 0, 2, 5] -> [2, 2, 5, 0, 0, 0]
 
