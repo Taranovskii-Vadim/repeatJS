@@ -4,6 +4,7 @@
 // 3) What is interceptor in frontend. Where we can use it?
 // 4) We have status system. Frontend send PUT request with new status, should we await API response to render new status or not.
 
+import CatalogTree from './components/CatalogTree';
 import { findMaxLeafSum } from './pureJsTasks';
 
 // Interview Tasks example
@@ -83,15 +84,15 @@ const App = (): JSX.Element => {
   // console.log(sortPowedArray([-3, 2, 4]));
   // console.log(sortPowedArray([-4, -2, 0, 3, 5]));
 
-  console.log(
-    findMaxLeafSum({
-      value: 1,
-      left: { value: 2, left: { value: 1, left: { value: 9 } }, right: { value: 7 } },
-      right: { value: 9, right: { value: 2 }, left: { value: 5, left: { value: 7 } } },
-    }),
-  );
+  // console.log(
+  //   findMaxLeafSum({
+  //     value: 1,
+  //     left: { value: 2, left: { value: 1, left: { value: 9 } }, right: { value: 7 } },
+  //     right: { value: 9, right: { value: 2 }, left: { value: 5, left: { value: 7 } } },
+  //   }),
+  // );
 
-  return <div></div>;
+  return <CatalogTree />;
 };
 
 export default App;
