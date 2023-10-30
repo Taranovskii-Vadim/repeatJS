@@ -1,0 +1,26 @@
+.container {
+  max-width: 750px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.container button {
+  cursor: pointer;
+}
+
+.box {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  text-align: center;
+}
+
+.zero {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 5;
+}

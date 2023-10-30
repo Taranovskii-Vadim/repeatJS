@@ -1,5 +1,5 @@
-import CatalogTree from './components/CatalogTree';
+import Password from './components/Password';
 
-const App = (): JSX.Element => <CatalogTree />;
+const App = (): JSX.Element => <Password />;
 
 export default App;
