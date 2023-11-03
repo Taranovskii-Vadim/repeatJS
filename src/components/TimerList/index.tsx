@@ -1,6 +1,17 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState, memo } from 'react';
 
-import Buttons from '../Buttons';
+const Buttons = memo(
+  ({ onAdd, onDelete }: { onAdd: () => void; onDelete: () => void }): JSX.Element => (
+    <>
+      <button style={{ width: '100%' }} onClick={onAdd}>
+        Добавить
+      </button>
+      <button style={{ width: '100%' }} onClick={onDelete}>
+        Удалить
+      </button>
+    </>
+  ),
+);
 
 const TimerList = (): JSX.Element => {
   const timer = useRef<number>();
