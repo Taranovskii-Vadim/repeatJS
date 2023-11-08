@@ -710,6 +710,28 @@ export const store = new Store();
 
 // Task 32
 
+export const findTwoPositive = (data: number[]): number => {
+  let count = 0;
+
+  let left = 0;
+
+  for (let i = 1; i < data.length; i++) {
+    count++;
+
+    if (data[left] === 1 && data[i] === 1) {
+      break;
+    }
+
+    if (data[i] === 1) {
+      left = i;
+    }
+  }
+
+  return count;
+};
+
+// Task 32
+
 // [0, 2, 0, -3, 0, 1] -> [2, -3, 1, 0, 0, 0]
 // [2, 0, 0, 0, 2, 5] -> [2, 2, 5, 0, 0, 0]
 
