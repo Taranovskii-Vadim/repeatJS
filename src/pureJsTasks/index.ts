@@ -153,24 +153,6 @@ export const fizzBazz = (num: number): number | 'fizz' | 'bazz' | 'fizzbazz' => 
   return num;
 };
 
-// Task 8
-
-export const myPromiseAll = async <T>(data: Promise<T>[]): Promise<T[]> => {
-  const result: T[] = [];
-
-  return new Promise(async (resolve, reject) => {
-    try {
-      for await (let item of data) {
-        result.push(item);
-      }
-
-      resolve(result);
-    } catch (e) {
-      reject(e);
-    }
-  });
-};
-
 // Task 9
 
 export const getSimpleNumbers = (limit: number): number[] => {
