@@ -1,7 +1,8 @@
-import { deepEqual } from './tasks/technic';
+// import { findMinimumToGetTarget } from './tasks/abstract';
 
 const App = (): JSX.Element => {
-  console.log(deepEqual({ a: undefined, b: 2 }, { b: 2, c: 3 }));
+  // console.log(findMinimumToGetTarget([2, 5, 10], 46));
+
   return <div></div>;
 };
 

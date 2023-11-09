@@ -69,3 +69,29 @@ export const findHotterDay = (data: number[]): number[] => {
 
   return result;
 };
+
+// Task 3
+// Дано: Отсортированный массив монет разных номиналов.
+// Цель: Требуется найти минимальное количество монет для получения передаваемой суммы
+
+export const findMinimumToGetTarget = (data: number[], target: number): number[] => {
+  const result: number[] = [];
+
+  let right = data.length - 1;
+
+  while (right >= 0) {
+    if (target === 0) return result;
+
+    if (target < data[right]) {
+      right--;
+    }
+
+    target = target - data[right];
+
+    result.unshift(data[right]);
+  }
+
+  return [];
+};
+
+// Task 4
