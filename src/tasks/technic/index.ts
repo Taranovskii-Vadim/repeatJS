@@ -46,12 +46,17 @@ export const deepEqual = <T>(first: T, second: T): boolean => {
     return Object.is(first, second);
   }
 
+  if ((Array.isArray(first) && !Array.isArray(second)) || (!Array.isArray(first) && Array.isArray(second)))
+    return false;
+
   if (Array.isArray(first) && Array.isArray(second)) {
     if (first.length !== second.length) return false;
 
     for (let i = 0; i < first.length; i++) {
-      if (first[i] !== second[i]) return false;
+      if (!deepEqual(first[i], second[i])) return false;
     }
+
+    return true;
   }
 
   if (first instanceof Date && second instanceof Date) {
@@ -70,24 +75,12 @@ export const deepEqual = <T>(first: T, second: T): boolean => {
   }
 
   if (typeof first === 'object' && typeof second === 'object') {
-    const firstKeys = Object.keys(first);
-    const secondKeys = Object.keys(second);
+    const firstEntries = Object.entries(first);
+    const secondEntries = Object.entries(second);
 
-    if (firstKeys.length !== secondKeys.length) return false;
+    if (firstEntries.length !== secondEntries.length) return false;
 
-    for (let i = 0; i < firstKeys.length; i++) {
-      if (firstKeys[i] !== secondKeys[i]) return false;
-    }
-
-    for (let key of firstKeys) {
-      if (typeof first[key] === 'object' && typeof second[key] === 'object') {
-        const result = deepEqual(first[key], second[key]);
-
-        if (!result) return false;
-      } else if (first[key] !== second[key]) {
-        return false;
-      }
-    }
+    if (!deepEqual(firstEntries, secondEntries)) return false;
   }
 
   return true;
