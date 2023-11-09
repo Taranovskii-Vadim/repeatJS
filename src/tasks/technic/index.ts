@@ -40,8 +40,18 @@ export const promiseAll = async <T>(data: Promise<T>[]): Promise<T[]> => {
 // Цель: Реализовать свой deepEqual
 
 export const deepEqual = <T>(first: T, second: T): boolean => {
+  if (typeof first !== typeof second) return false;
+
   if (typeof first !== 'object' && typeof second !== 'object') {
     return Object.is(first, second);
+  }
+
+  if (Array.isArray(first) && Array.isArray(second)) {
+    if (first.length !== second.length) return false;
+
+    for (let i = 0; i < first.length; i++) {
+      if (first[i] !== second[i]) return false;
+    }
   }
 
   if (first instanceof Date && second instanceof Date) {
@@ -78,9 +88,7 @@ export const deepEqual = <T>(first: T, second: T): boolean => {
         return false;
       }
     }
-
-    return true;
   }
 
-  return false;
+  return true;
 };
