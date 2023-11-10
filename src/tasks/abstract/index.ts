@@ -95,3 +95,27 @@ export const findMinimumToGetTarget = (data: number[], target: number): number[]
 };
 
 // Task 4
+// Дано: Массив представляющий собой район, где каждый дом содержит в себе информацию о том, что находится на первом этаже дома.
+// Найти: Оптимальный / наилучший вариант учитывая ближайшие соседние дома.
+
+export const findHome = (data: Record<string, boolean>[], req: string[]): number => {
+  let result = -1;
+
+  for (let i = 0; i < data.length; i++) {
+    let keys = new Set(req.filter((key) => data[i][key]));
+
+    if (data[i - 1]) {
+      req.filter((key) => data[i - 1][key]).forEach(keys.add, keys);
+    }
+
+    if (data[i + 1]) {
+      req.filter((key) => data[i + 1][key]).forEach(keys.add, keys);
+    }
+
+    if (keys.size === req.length) return i;
+  }
+
+  return result;
+};
+
+// Task 5
