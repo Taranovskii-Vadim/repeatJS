@@ -91,3 +91,17 @@ export const findBadDay = (data: boolean[][]): number => {
 };
 
 // Task 5
+
+export const canDrink = (person: Record<'age', number>) => {
+  if (!person.age) {
+    throw new Error('Age does not exist');
+  }
+
+  const getDrinkResponse = (age: number) => {
+    if (age < 18) return 'can not drink';
+    if (age < 21) return 'can not drink in USA';
+    return 'can drink';
+  };
+
+  return getDrinkResponse(person.age);
+};

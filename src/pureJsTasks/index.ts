@@ -119,22 +119,6 @@ const getSumOfTreeValues = (tree: Tree): number => {
 
 export const sumOfTreeValuesResult = getSumOfTreeValues(testTree);
 
-// Task 6
-
-export const canDrink = (person: Record<'age', number>) => {
-  if (!person.age) {
-    throw new Error('Age does not exist');
-  }
-
-  const getDrinkResponse = (age: number) => {
-    if (age < 18) return 'can not drink';
-    if (age < 21) return 'can not drink in USA';
-    return 'can drink';
-  };
-
-  return getDrinkResponse(person.age);
-};
-
 // Task 7
 
 export const fizzBazz = (num: number): number | 'fizz' | 'bazz' | 'fizzbazz' => {
@@ -192,22 +176,6 @@ export const getTodayTotal = (): Record<string, number[]> => {
 
     return acc;
   }, {} as Record<string, number[]>);
-};
-
-// Task 11
-
-export const myFlat = <D>(data: D[]): D[] => {
-  let result: D[] = [];
-
-  for (let item of data) {
-    if (Array.isArray(item)) {
-      result = [...result, ...myFlat(item)];
-    } else {
-      result = [...result, item];
-    }
-  }
-
-  return result;
 };
 
 // Task 12

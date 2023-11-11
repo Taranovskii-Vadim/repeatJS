@@ -71,3 +71,23 @@ export const deepEqual = <T>(first: T, second: T): boolean => {
 
   return true;
 };
+
+// Task 3
+// Цель: Реализовать свой метод flat (рекурсивный)
+
+export const myFlat = <D>(data: D[]): D[] => {
+  let result: D[] = [];
+
+  for (let item of data) {
+    if (Array.isArray(item)) {
+      result = [...result, ...myFlat(item)];
+    } else {
+      result = [...result, item];
+    }
+  }
+
+  return result;
+};
+
+// Task 4
+// Цель: Реализовать свой метод flat (c обработкой уровня вложенности)
