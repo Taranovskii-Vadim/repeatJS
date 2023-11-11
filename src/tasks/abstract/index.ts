@@ -119,3 +119,20 @@ export const findHome = (data: Record<string, boolean>[], req: string[]): number
 };
 
 // Task 5
+
+// Дано: Матрица где row это характерный день, а cell это характерный час в этот день.
+// Матрица содержит в себе boolean значения которые показывают была ли сборка проекта успешной или нет.
+// Найти: День с наибольшим количеством провалов сборки.
+
+export const findBadDay = (data: boolean[][]): number => {
+  const percentages = data.map((row) =>
+    row.reduce((acc, item) => {
+      const currentPercent = !item ? Math.floor(100 / row.length) : 0;
+      return acc + currentPercent;
+    }, 0),
+  );
+
+  return percentages.indexOf(Math.max(...percentages));
+};
+
+// Task 6
