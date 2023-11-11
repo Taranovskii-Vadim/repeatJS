@@ -455,20 +455,6 @@ export const findElementsSum = (data: number[], target: number): number[] => {
   return [];
 };
 
-// Task 24
-
-export const stonks = (data: number[]): number => {
-  let profit = 0;
-  let min = data[0];
-
-  for (let i = 0; i < data.length; i++) {
-    min = Math.min(min, data[i]);
-    profit = Math.max(profit, data[i] - min);
-  }
-
-  return profit;
-};
-
 // Task 25
 
 export const getPossibleReplacement = (value: number): number[] => {
