@@ -90,9 +90,6 @@ export const myFlat = <D>(data: D[]): D[] => {
 };
 
 // Task 4
-// Цель: Реализовать свой метод flat (c обработкой уровня вложенности)
-
-// Task 5
 // Цель: Реализовать свой deepClone
 
 export const deepClone = <D>(data: D): D => {
@@ -120,3 +117,36 @@ export const deepClone = <D>(data: D): D => {
 
   return result;
 };
+
+// Task 5
+// Цель: Реализовать свой метод map
+
+type Callback<D, R = D> = (item: D, index: number, arr: D[]) => R;
+
+export const myMap = <D>(data: D[], callback: Callback<D>): D[] => {
+  const result: D[] = [];
+
+  for (let i = 0; i < data.length; i++) {
+    result.push(callback(data[i], i, data));
+  }
+
+  return result;
+};
+
+// Task 6
+// Цель: Реализовать свой метод filter
+
+export const myFilter = <D>(data: D[], callback: Callback<D, boolean>): D[] => {
+  const result: D[] = [];
+
+  for (let i = 0; i < data.length; i++) {
+    if (callback(data[i], i, data)) {
+      result.push(data[i]);
+    }
+  }
+
+  return result;
+};
+
+// Task 7
+// Цель: Реализовать свой метод flat (c обработкой уровня вложенности)

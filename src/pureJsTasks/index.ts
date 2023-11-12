@@ -204,28 +204,6 @@ export const myBind = <D>(ctx: Context<D>, callback: Callback<D>, ...rest: D[]) 
   };
 };
 
-// Task 16
-
-type CallbackFn<D, R = D> = (item: D, index: number, arr: D[]) => R;
-
-export const myMap = <D>(data: D[], callback: CallbackFn<D>): D[] => {
-  return data.reduce((acc, item, ...rest) => {
-    acc.push(callback(item, ...rest));
-
-    return acc;
-  }, [] as D[]);
-};
-
-export const myFilter = <D>(data: D[], callback: CallbackFn<D, boolean>): D[] => {
-  return data.reduce((acc, item, ...other) => {
-    if (callback(item, ...other)) {
-      acc.push(item);
-    }
-
-    return acc;
-  }, [] as D[]);
-};
-
 // Task 17
 
 export const closureSum = (...init: number[]) => {
