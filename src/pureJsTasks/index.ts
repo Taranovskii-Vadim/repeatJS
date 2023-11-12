@@ -204,54 +204,6 @@ export const myBind = <D>(ctx: Context<D>, callback: Callback<D>, ...rest: D[]) 
   };
 };
 
-// Task 14 deep clone
-
-const template = {
-  first: 'test',
-  second: [1, 2, 3],
-  third: {
-    data: 45,
-    info: {
-      address: 'info',
-    },
-  },
-  fourth: function (value: boolean) {
-    return value;
-  },
-  fifth: new Date(),
-  sixth: new Set([1, 2, 2, 3, 4, 5, 5, 6, 6, 6, 8]),
-  seventh: new Map([
-    [{ id: 'qwe' }, 3],
-    [{ id: 'jgh' }, 5],
-  ]),
-};
-
-export const deepClone = <D>(data: D): D => {
-  let result = {} as D;
-
-  for (let key in data) {
-    const item = data[key];
-
-    if (Array.isArray(item)) {
-      result = { ...result, [key]: [...item] };
-    } else if (item instanceof Date) {
-      result = { ...result, [key]: new Date(item) };
-    } else if (item instanceof Set) {
-      result = { ...result, [key]: new Set(item) };
-    } else if (item instanceof Map) {
-      result = { ...result, [key]: new Map(item) };
-    } else if (typeof item === 'function') {
-      result = { ...result, [key]: new Function('return ' + item.toString()) };
-    } else if (typeof item === 'object' && item !== null) {
-      result = { ...result, [key]: deepClone(item) };
-    } else {
-      result = { ...result, [key]: item };
-    }
-  }
-
-  return result;
-};
-
 // Task 16
 
 type CallbackFn<D, R = D> = (item: D, index: number, arr: D[]) => R;

@@ -91,3 +91,32 @@ export const myFlat = <D>(data: D[]): D[] => {
 
 // Task 4
 // Цель: Реализовать свой метод flat (c обработкой уровня вложенности)
+
+// Task 5
+// Цель: Реализовать свой deepClone
+
+export const deepClone = <D>(data: D): D => {
+  const result = {} as D;
+
+  for (let key in data) {
+    const item = data[key];
+
+    if (Array.isArray(item)) {
+      result[key] = item.map(deepClone);
+    } else if (item instanceof Set) {
+      result[key] = new Set(item);
+    } else if (item instanceof Map) {
+      result[key] = new Map(item);
+    } else if (item instanceof Date) {
+      result[key] = new Date(item);
+    } else if (item instanceof Function) {
+      result[key] = new Function('return ' + item.toString());
+    } else if (typeof item === 'object' && item !== null) {
+      result[key] = deepClone(item);
+    } else {
+      result[key] = data[key];
+    }
+  }
+
+  return result;
+};
