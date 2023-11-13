@@ -204,23 +204,6 @@ export const myBind = <D>(ctx: Context<D>, callback: Callback<D>, ...rest: D[]) 
   };
 };
 
-// Task 17
-
-export const closureSum = (...init: number[]) => {
-  const getSum = (arr: number[]) => arr.reduce((acc, item) => acc + item, 0);
-
-  let result = getSum(init);
-
-  return function getResult(...value: number[]) {
-    if (value.length) {
-      result += getSum(value);
-      return getResult;
-    }
-
-    return result;
-  };
-};
-
 // Task 18
 
 export const recursiveSum = (data: number[]): number =>

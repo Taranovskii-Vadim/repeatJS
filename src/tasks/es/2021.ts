@@ -1,4 +1,3 @@
-// ES 2021
 // Divide long number with the help of _
 export const TEST_NUMBER = 1_000_000_000;
 
@@ -22,10 +21,9 @@ export const TEST_NUMBER = 1_000_000_000;
 
 // ReplaceAll
 
-const test =
-  "JavaScript is the best language in the world because it is JavaScript";
+const test = 'JavaScript is the best language in the world because it is JavaScript';
 
-export const removeJsWord = () => test.replaceAll("JavaScript", "Python");
+export const removeJsWord = () => test.replaceAll('JavaScript', 'Python');
 
 // Promise.any
 
@@ -43,7 +41,7 @@ const getPromise = (val: number, timeout: number, error: string) => {
 
 export async function start() {
   try {
-    const promises = [6, 7, 8].map((item) => getPromise(item, 2000, "error"));
+    const promises = [6, 7, 8].map((item) => getPromise(item, 2000, 'error'));
     const response = await Promise.all(promises);
     console.log(response);
   } catch (e) {
@@ -82,6 +80,6 @@ class Person extends Human {
   }
 }
 
-const person = new Person(1998, "Vadim");
+const person = new Person(1998, 'Vadim');
 
 console.log(person.getInfo());
