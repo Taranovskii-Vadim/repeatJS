@@ -164,3 +164,36 @@ export const myFlat = <D>(data: D[], level: number = 1): D[] => {
 
   return result;
 };
+
+// Task 8
+// Цель: Реализовать свой класс Promise
+
+type Init<D> = (resolve: (value: D) => void, reject: (err: string) => void) => void;
+
+export class myPromise<D> {
+  private data: Array<(value: D) => void> = [];
+
+  constructor(init: Init<D>) {
+    init(this.resolve.bind(this), this.reject.bind(this));
+  }
+
+  private resolve(value: D) {
+    this.data.forEach((callback) => {
+      callback(value);
+    });
+  }
+
+  private reject(err: string) {}
+
+  then(callback: (value: D) => D) {
+    return new myPromise((resolve, reject) => {
+      this.data.push((value) => {
+        const result = callback(value);
+
+        resolve(result);
+      });
+    });
+  }
+
+  catch() {}
+}

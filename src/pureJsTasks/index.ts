@@ -256,47 +256,6 @@ export const maxDepthResult = maxDepth(testTree);
 
 // task 20
 
-type ThenCallback<D> = (value: D) => D;
-type PromiseCallback<D> = (resolve: (value: D) => void, reject: () => void) => void;
-
-class MyPromise<D> {
-  private callbacks: Array<(value: D) => void> = [];
-
-  constructor(callback: PromiseCallback<D>) {
-    callback(this.resolve.bind(this), this.reject.bind(this));
-  }
-
-  private resolve(value: D): void {
-    this.callbacks.forEach((callback) => {
-      callback(value);
-    });
-  }
-
-  private reject() {}
-
-  then(callback: ThenCallback<D>): MyPromise<D> {
-    return new MyPromise((resolve, reject) => {
-      this.callbacks.push((value) => {
-        const result = callback(value);
-
-        resolve(result);
-      });
-    });
-  }
-
-  catch() {}
-
-  finally() {}
-}
-
-export const promise = new MyPromise<number>((resolve, reject) => {
-  setTimeout(() => {
-    resolve(10);
-  }, 1000);
-});
-
-// Task 21
-
 class Dictionary {
   private data: Record<string, true>;
 
