@@ -168,13 +168,13 @@ export const myFlat = <D>(data: D[], level: number = 1): D[] => {
 // Task 8
 // Цель: Реализовать свой класс Promise
 
-type Init<D> = (resolve: (value: D) => void, reject: (err: string) => void) => void;
+type Init<D> = (resolve: (value: D) => void) => void;
 
 export class myPromise<D> {
   private data: Array<(value: D) => void> = [];
 
   constructor(init: Init<D>) {
-    init(this.resolve.bind(this), this.reject.bind(this));
+    init(this.resolve.bind(this));
   }
 
   private resolve(value: D) {
@@ -183,10 +183,8 @@ export class myPromise<D> {
     });
   }
 
-  private reject(err: string) {}
-
   then(callback: (value: D) => D) {
-    return new myPromise((resolve, reject) => {
+    return new myPromise((resolve) => {
       this.data.push((value) => {
         const result = callback(value);
 
@@ -194,6 +192,4 @@ export class myPromise<D> {
       });
     });
   }
-
-  catch() {}
 }
