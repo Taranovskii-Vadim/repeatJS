@@ -61,3 +61,16 @@ export const myFlat = <D>(data: D[], level: number = 1): D[] => {
 
   return result;
 };
+
+// Task 5
+// Цель: реализовать свой метод splice
+
+export const mySplice = <D>(data: D[], start: number, deleteCount: number = data.length) => {
+  for (let i = 0; i < data.length; i++) {
+    if (i >= start && deleteCount-- > 0) {
+      delete data[i];
+    }
+  }
+
+  return data.filter(Boolean);
+};
