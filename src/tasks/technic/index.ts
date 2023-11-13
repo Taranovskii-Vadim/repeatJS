@@ -193,3 +193,14 @@ export class myPromise<D> {
     });
   }
 }
+
+// Task 9
+// Цель: Реализовать свой Promise.race
+
+export const promiseRace = <D>(data: Promise<D>[]): Promise<D> => {
+  return new Promise((resolve, reject) => {
+    data.forEach((promise) => {
+      promise.then(resolve).catch(reject);
+    });
+  });
+};
