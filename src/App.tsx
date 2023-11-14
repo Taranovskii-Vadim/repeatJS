@@ -13,8 +13,6 @@ const third = new Promise((resolve) => {
 });
 
 const App = (): JSX.Element => {
-  console.log(findMaxResult([1.0, 2.0, 3.0]));
-
   return <div></div>;
 };
 

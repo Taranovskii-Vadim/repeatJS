@@ -121,38 +121,66 @@ export const findMaxResult = (data: number[]): number => {
 
   const operations = ['+', '-', '*', '/'] as const;
 
-  function solve(current: number, nextIndex: number): number {
-    if (nextIndex === data.length) return current;
+  // function solve(current: number, nextIndex: number): number {
+  //   if (nextIndex === data.length) return current;
 
-    let tempResult = 0;
-    let nextItem = data[nextIndex];
+  //   let tempResult = 0;
+  //   let nextItem = data[nextIndex];
 
-    for (let operation of operations) {
-      if (operation === '+') {
-        tempResult = current + nextItem;
-      }
+  //   for (let operation of operations) {
+  //     if (operation === '+') {
+  //       tempResult = current + nextItem;
+  //     }
 
-      if (operation === '-') {
-        tempResult = current - nextItem;
-      }
+  //     if (operation === '-') {
+  //       tempResult = current - nextItem;
+  //     }
 
-      if (operation === '*') {
-        tempResult = current * nextItem;
-      }
+  //     if (operation === '*') {
+  //       tempResult = current * nextItem;
+  //     }
 
-      if (operation === '/' && nextItem !== 0) {
-        tempResult = current / nextItem;
-      }
+  //     if (operation === '/' && nextItem !== 0) {
+  //       tempResult = current / nextItem;
+  //     }
 
-      const tempMax = solve(tempResult, nextIndex + 1);
+  //     const tempMax = solve(tempResult, nextIndex + 1);
 
-      result = Math.max(result, tempMax);
+  //     result = Math.max(result, tempMax);
+  //   }
+
+  //   return 0;
+  // }
+
+  // solve(data[0], 1);
+
+  // return result;
+
+  /////////////////////////////////////////////
+
+  let max = data[0];
+  let min = data[0];
+
+  for (let i = 1; i < data.length; i++) {
+    const values: number[] = [];
+
+    values.push(max + data[i]);
+    values.push(min + data[i]);
+
+    values.push(max - data[i]);
+    values.push(min - data[i]);
+
+    values.push(max * data[i]);
+    values.push(min * data[i]);
+
+    if (data[i] !== 0) {
+      values.push(max / data[i]);
+      values.push(min / data[i]);
     }
 
-    return 0;
+    max = Math.max(...values);
+    min = Math.min(...values);
   }
 
-  solve(data[0], 1);
-
-  return result;
+  return max;
 };
