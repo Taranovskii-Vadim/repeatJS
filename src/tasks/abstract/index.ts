@@ -105,3 +105,54 @@ export const canDrink = (person: Record<'age', number>) => {
 
   return getDrinkResponse(person.age);
 };
+
+// Task 6
+// Дано: Массив десятичных чисел и 4 операции которые можно выполнять с этими числами.
+// Математическая приоритетность не учитывается.
+// Найти: максимально возможное число которое можно получить применив эти операции.
+
+export const findMaxResult = (data: number[]): number => {
+  // O(4 ^ n)
+  // O(n)
+
+  if (data.length === 0) return data[0];
+
+  let result = Number.NEGATIVE_INFINITY;
+
+  const operations = ['+', '-', '*', '/'] as const;
+
+  function solve(current: number, nextIndex: number): number {
+    if (nextIndex === data.length) return current;
+
+    let tempResult = 0;
+    let nextItem = data[nextIndex];
+
+    for (let operation of operations) {
+      if (operation === '+') {
+        tempResult = current + nextItem;
+      }
+
+      if (operation === '-') {
+        tempResult = current - nextItem;
+      }
+
+      if (operation === '*') {
+        tempResult = current * nextItem;
+      }
+
+      if (operation === '/' && nextItem !== 0) {
+        tempResult = current / nextItem;
+      }
+
+      const tempMax = solve(tempResult, nextIndex + 1);
+
+      result = Math.max(result, tempMax);
+    }
+
+    return 0;
+  }
+
+  solve(data[0], 1);
+
+  return result;
+};
