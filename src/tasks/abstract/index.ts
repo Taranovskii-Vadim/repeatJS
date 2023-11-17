@@ -184,3 +184,79 @@ export const findMaxResult = (data: number[]): number => {
 
   return max;
 };
+
+// Task 7
+// Дано: Массив чисел и некоторое число k;
+// Найти: Количество под массивов сумма элементов которых равна числу k;
+
+export const findSubArrays = (data: number[], k: number): number => {
+  let result = 0;
+
+  // O (n ^ 2)
+  // O (1)
+
+  // for (let i = 0; i < data.length; i++) {
+  //   let sum = data[i];
+
+  //   if (sum === k) result++;
+
+  //   for (let j = i + 1; j < data.length; j++) {
+  //     sum += data[j];
+
+  //     if (sum === k) {
+  //       result++;
+  //     }
+  //   }
+  // }
+
+  ///////////////
+
+  // O(n log n) < ??? < O(n ^ 2)
+  // O(1)
+
+  // let windowSize = data.length;
+
+  // let left = 0;
+  // let right = windowSize - 1;
+
+  // const findArraySum = () => data.slice(left, right + 1).reduce((acc, item) => acc + item, 0);
+
+  // while (windowSize > 0) {
+  //   const sum = findArraySum();
+
+  //   if (sum === k) {
+  //     result++;
+  //   }
+
+  //   if (right === data.length - 1) {
+  //     left = 0;
+  //     right = --windowSize - 1;
+  //   } else {
+  //     left++;
+  //     right++;
+  //   }
+  // }
+
+  // ///////////////////
+
+  // O(n)
+  // O(n)
+
+  const dict = new Map([[0, 1]]);
+
+  let sum = 0;
+
+  for (let i = 0; i < data.length; i++) {
+    sum += data[i];
+
+    const diff = sum - k;
+
+    if (dict.has(diff)) {
+      result += dict.get(diff) as number;
+    }
+
+    dict.set(sum, (dict.get(sum) || 0) + 1);
+  }
+
+  return result;
+};
