@@ -267,7 +267,7 @@ export const findSubArrays = (data: number[], k: number): number => {
 // Найти: max H-index, то есть k статей значения которых больше k.
 
 export const findHIndex = (data: number[]): number => {
-  let hIndex = 0;
+  let hIndex = 1;
 
   // O(n log n)
   // O(1)
@@ -304,9 +304,10 @@ export const findHIndex = (data: number[]): number => {
   }
 
   for (let i = data.length - 1; i >= 0; i--) {
-    if (data[i] < ++hIndex) {
+    if (data[i] < hIndex) {
       return hIndex - 1;
     }
+    hIndex++;
   }
 
   return hIndex;
