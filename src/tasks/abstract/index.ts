@@ -260,3 +260,54 @@ export const findSubArrays = (data: number[], k: number): number => {
 
   return result;
 };
+
+// Task 8
+// Дано: Массив чисел представляющий собой массив статей где длина массива равна количеству статей.
+// Элемент массива представляет собой число >=0 которое показывает сколько раз на эту статью ссылались.
+// Найти: max H-index, то есть k статей значения которых больше k.
+
+export const findHIndex = (data: number[]): number => {
+  let hIndex = 0;
+
+  // O(n log n)
+  // O(1)
+
+  // data.sort();
+
+  // for (let i = data.length - 1; i >= 0; i--) {
+  //   if (data[i] < ++hIndex) {
+  //     return hIndex - 1;
+  //   }
+  // }
+
+  // /////////////////////
+  // O(n) because we use count sort instead of ordinary sort
+  // O(n)
+
+  const count = new Array(data.length + 1).fill(0);
+
+  for (let item of data) {
+    if (item >= data.length) {
+      count[data.length]++;
+    } else {
+      count[item]++;
+    }
+  }
+
+  let position = 0;
+
+  for (let i = 0; i <= data.length; i++) {
+    for (let j = 0; j < count[i]; j++) {
+      data[position] = i;
+      position++;
+    }
+  }
+
+  for (let i = data.length - 1; i >= 0; i--) {
+    if (data[i] < ++hIndex) {
+      return hIndex - 1;
+    }
+  }
+
+  return hIndex;
+};
