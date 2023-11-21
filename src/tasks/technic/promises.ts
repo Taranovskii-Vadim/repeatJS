@@ -28,17 +28,6 @@ export class myPromise<D> {
 }
 
 // Task 2
-// Цель: Реализовать свой Promise.race
-
-export const promiseRace = <D>(data: Promise<D>[]): Promise<D> => {
-  return new Promise((resolve, reject) => {
-    data.forEach((promise) => {
-      promise.then(resolve).catch(reject);
-    });
-  });
-};
-
-// Task 3
 // Цель: Реализовать свой promiseAll
 export const promiseAll = async <T>(data: Promise<T>[]): Promise<T[]> => {
   const results: T[] = [];
@@ -76,7 +65,7 @@ export const promiseAll = async <T>(data: Promise<T>[]): Promise<T[]> => {
   });
 };
 
-// Task 4
+// Task 3
 // Цель: Реализовать свой promiseAllSettled
 
 type ResolvedPromise<D> = { status: 'fulfilled'; data: D };
@@ -107,5 +96,30 @@ export const promiseAllSettled = <D>(data: Promise<D>[]): Promise<Response<D>[]>
   });
 };
 
-// Task 5
+// Task 4
 // Цель: Реализовать свой promiseAny
+
+export const promiseAny = <D>(data: Promise<D>[]): Promise<D> => {
+  let count = 0;
+
+  return new Promise((resolve, reject) => {
+    data.forEach((promise) => {
+      promise.then(resolve).catch((e) => {
+        if (++count === data.length) {
+          reject('All promises are failed');
+        }
+      });
+    });
+  });
+};
+
+// Task 5
+// Цель: Реализовать свой Promise.race
+
+export const promiseRace = <D>(data: Promise<D>[]): Promise<D> => {
+  return new Promise((resolve, reject) => {
+    data.forEach((promise) => {
+      promise.then(resolve).catch(reject);
+    });
+  });
+};

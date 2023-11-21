@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
-import { findHIndex, findMaxResult, findSubArrays } from './tasks/abstract';
-import { promiseAllSettled } from './tasks/technic/promises';
 
-const first = new Promise<number>((resolve) => {
-  setTimeout(() => resolve(2), 2000);
+const first = new Promise<number>((resolve, reject) => {
+  setTimeout(() => reject(2), 2000);
 });
 
 const second = new Promise<number>((resolve, reject) => {
@@ -22,11 +20,7 @@ const App = (): JSX.Element => {
   // console.log(findHIndex([3, 0, 6, 1, 5]));
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await promiseAllSettled([first, second, third]);
-
-      console.log(response);
-    };
+    const fetchData = async () => {};
 
     fetchData();
   }, []);
