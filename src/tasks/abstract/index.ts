@@ -111,78 +111,78 @@ export const canDrink = (person: Record<'age', number>) => {
 // Математическая приоритетность не учитывается.
 // Найти: максимально возможное число которое можно получить применив эти операции.
 
-export const findMaxResult = (data: number[]): number => {
-  // O(4 ^ n)
-  // O(n)
+export const findMaxResult = (data: number[]) => {
+  // O(4 ^ n), O(n)
 
-  if (data.length === 0) return data[0];
+  // let result = Number.NEGATIVE_INFINITY;
 
-  let result = Number.NEGATIVE_INFINITY;
+  // const operations = ['+', '-', '*', '/'] as const;
 
-  const operations = ['+', '-', '*', '/'] as const;
-
-  // function solve(current: number, nextIndex: number): number {
+  // function dfs(current: number, nextIndex: number) {
   //   if (nextIndex === data.length) return current;
 
-  //   let tempResult = 0;
-  //   let nextItem = data[nextIndex];
+  //   const nextItem = data[nextIndex];
+
+  //   let temp = 0;
 
   //   for (let operation of operations) {
   //     if (operation === '+') {
-  //       tempResult = current + nextItem;
+  //       temp = current + nextItem;
   //     }
 
   //     if (operation === '-') {
-  //       tempResult = current - nextItem;
+  //       temp = current - nextItem;
   //     }
 
   //     if (operation === '*') {
-  //       tempResult = current * nextItem;
+  //       temp = current * nextItem;
   //     }
 
   //     if (operation === '/' && nextItem !== 0) {
-  //       tempResult = current / nextItem;
+  //       temp = current / nextItem;
   //     }
 
-  //     const tempMax = solve(tempResult, nextIndex + 1);
+  //     const tempResult = dfs(temp, nextIndex + 1);
 
-  //     result = Math.max(result, tempMax);
+  //     result = Math.max(result, tempResult);
   //   }
 
   //   return 0;
   // }
 
-  // solve(data[0], 1);
+  // dfs(data[0], 1);
 
-  // return result;
+  // return result
 
-  /////////////////////////////////////////////
+  ////////////////////////////////
 
-  let max = data[0];
-  let min = data[0];
+  // O(n), O(n)
+
+  let maxPositive = data[0];
+  let maxNegative = data[0];
 
   for (let i = 1; i < data.length; i++) {
-    const values: number[] = [];
+    const values = [];
 
-    values.push(max + data[i]);
-    values.push(min + data[i]);
+    values.push(maxPositive + data[i]);
+    values.push(maxNegative + data[i]);
 
-    values.push(max - data[i]);
-    values.push(min - data[i]);
+    values.push(maxNegative - data[i]);
+    values.push(maxPositive - data[i]);
 
-    values.push(max * data[i]);
-    values.push(min * data[i]);
+    values.push(maxNegative * data[i]);
+    values.push(maxPositive * data[i]);
 
     if (data[i] !== 0) {
-      values.push(max / data[i]);
-      values.push(min / data[i]);
+      values.push(maxNegative / data[i]);
+      values.push(maxPositive / data[i]);
     }
 
-    max = Math.max(...values);
-    min = Math.min(...values);
+    maxPositive = Math.max(...values);
+    maxNegative = Math.min(...values);
   }
 
-  return max;
+  return maxPositive;
 };
 
 // Task 7
