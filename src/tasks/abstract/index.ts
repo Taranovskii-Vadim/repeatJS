@@ -312,3 +312,33 @@ export const findHIndex = (data: number[]): number => {
 
   return hIndex;
 };
+
+// Task 9
+// Дано: 2d матрица с размерностью row * cell. В координтах 0 * 0 находится человек который может двигаться вниз и вправо на 1 клетку.
+// Также в матрице есть выход находящийся в координатах row - 1 * cell - 1.
+// Найти: количество уникальных путей которые может пройти человек до выхода
+
+export const findExit = (row: number, cell: number): number => {
+  // O(2 ^ n + m)
+  // O(n)
+  // if (row < 1 || cell < 1) return 0;
+  // if (row === 1 && cell === 1) return 1;
+  // return findExit(row - 1, cell) + findExit(row, cell - 1);
+
+  // O (n * m)
+  // O (n)
+  const helper = (row: number, cell: number, arr: number[][]): number => {
+    if (row < 1 || cell < 1) return 0;
+    if (row === 1 && cell === 1) return 1;
+
+    if (arr[row][cell] !== 0) {
+      return arr[row][cell];
+    }
+
+    arr[row][cell] = helper(row - 1, cell, arr) + helper(row, cell - 1, arr);
+
+    return arr[row][cell];
+  };
+
+  return helper(row, cell, new Array(row + 1).fill(new Array(cell + 1).fill(0)));
+};

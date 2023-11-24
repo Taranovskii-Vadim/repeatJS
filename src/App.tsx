@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { findMaxResult } from './tasks/abstract';
+import { findExit, findMaxResult } from './tasks/abstract';
 
 // const first = new Promise<number>((resolve, reject) => {
 //   setTimeout(() => reject(2), 2000);
@@ -25,6 +25,8 @@ const App = (): JSX.Element => {
 
   //   fetchData();
   // }, []);
+
+  console.log(findExit(3, 2));
 
   return <div></div>;
 };
