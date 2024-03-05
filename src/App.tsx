@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { findExit, findMaxResult } from './tasks/abstract';
+import Rating from './components/Rating';
 
 // const first = new Promise<number>((resolve, reject) => {
 //   setTimeout(() => reject(2), 2000);
@@ -26,9 +25,9 @@ const App = (): JSX.Element => {
   //   fetchData();
   // }, []);
 
-  console.log(findExit(3, 2));
+  // console.log(findExit(3, 2));
 
-  return <div></div>;
+  return <Rating />;
 };
 
 export default App;
