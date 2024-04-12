@@ -343,72 +343,6 @@ export const findArrItemsSum = (arr1: number[], arr2: number[]): number[] => {
   return result;
 };
 
-// Task 27
-
-class jQuery {
-  private node: HTMLElement | null = null;
-
-  constructor(selector: string) {
-    this.node = document.querySelector(selector);
-  }
-
-  addClass(classname: string) {
-    if (this.node) {
-      this.node.classList.add(classname);
-    }
-
-    return this;
-  }
-
-  removeClass(classname: string) {
-    if (this.node) {
-      this.node.classList.remove(classname);
-    }
-
-    return this;
-  }
-
-  html(markup: string) {
-    if (this.node) {
-      this.node.innerHTML = markup;
-    }
-
-    return this;
-  }
-}
-
-export const $ = (selector: string) => new jQuery(selector);
-
-/////////////////////////////////
-
-// export const $ = (selector: string) => {
-//   const node = document.querySelector(selector);
-
-//   return {
-//     addClass(classname: string) {
-//       if (node) {
-//         node.classList.add(classname);
-//       }
-
-//       return this;
-//     },
-//     removeClass(classname: string) {
-//       if (node) {
-//         node.classList.remove(classname);
-//       }
-
-//       return this;
-//     },
-//     html(markup: string) {
-//       if (node) {
-//         node.innerHTML = markup;
-//       }
-
-//       return this;
-//     },
-//   };
-// };
-
 // Task 28
 
 export const sortPowedArray = (data: number[]): number[] => {
@@ -475,10 +409,3 @@ export const findMaxLeafSum = (tree: Tree): number => {
 
   return result;
 };
-
-// [0, 2, 0, -3, 0, 1] -> [2, -3, 1, 0, 0, 0]
-// [2, 0, 0, 0, 2, 5] -> [2, 2, 5, 0, 0, 0]
-
-// export const moveZerosToEnd = (data: number[]): number[] => {
-//   return data;
-// };
