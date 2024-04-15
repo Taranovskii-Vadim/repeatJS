@@ -74,3 +74,21 @@ export const mySplice = <D>(data: D[], start: number, deleteCount: number = data
 
   return data.filter(Boolean);
 };
+
+// Task 6
+// Цель: Реализовать функциую возведения чисел в квадрат с сохранением сортировки
+
+export const powWithSaveSort = (data: number[]): number[] => {
+  for (let i = data.length - 1; i >= 0; i--) {
+    const powedRight = Math.pow(data[i], 2);
+    const powedLeft = Math.pow(data[0], 2);
+
+    if (powedRight > powedLeft) {
+      data[i] = powedRight;
+    } else {
+      [data[0], data[i]] = [data[i], powedLeft];
+    }
+  }
+
+  return data;
+};
